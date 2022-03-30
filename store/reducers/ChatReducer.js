@@ -1,9 +1,8 @@
-import { CHATROOMS } from "../../dummy.data";
-import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM } from "../actions/ChatActions";
+import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS } from "../actions/ChatActions";
 import { Chatroom } from "../../entities/Chatroom";
 
 const initialState = {
-  chatrooms: CHATROOMS,
+  chatrooms: [],
   counter: 0,
   isHappy: false,
   name: "Laura",
@@ -17,19 +16,20 @@ const chatReducer = (state = initialState, action) => {
       return { ...state, counter: state.counter - 1 };
     case TOGGLE_HAPPY:
       return { ...state, isHappy: !state.isHappy };
+    case FETCH_CHATROOMS:
+      return { ...state, chatrooms: action.payload };
     case ADD_CHATROOM:
-      const chatroom = new Chatroom(action.payload, [], "");
-      //const newChatroomArray = [...state.chatrooms, chatroom];
-      //return { ...state, chatrooms: newChatroomArray };
+      const chatroom = new Chatroom(action.payload.chatroomName, [], "", action.payload.id);
       return { ...state, chatrooms: [...state.chatrooms, chatroom] };
+    //const newChatroomArray = [...state.chatrooms, chatroom];
+    //return { ...state, chatrooms: newChatroomArray };
     case DELETE_CHATROOM:
-      console.log(action.payload);
       return {
         ...state,
-        chatrooms: state.chatrooms.filter((chatroom) => chatroom.title !== action.payload),
+        chatrooms: state.chatrooms.filter((chatroom) => chatroom.id !== action.payload),
       };
     default:
-      return state; //does not do anything yet​
+      return state;
   }
 };
 

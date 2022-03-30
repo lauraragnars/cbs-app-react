@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Text, TextInput, FlatList, TouchableOpacity } from "react-native";
-//import { Chatroom } from "../entities/Chatroom";
 import { useSelector, useDispatch } from "react-redux";
-import { addChatroom, deleteChatroom } from "../store/actions/ChatActions";
+import { addChatroom, deleteChatroom, fetchChatrooms } from "../store/actions/ChatActions";
 
 export default function Chatrooms({ navigation }) {
   const dispatch = useDispatch();
@@ -10,10 +9,14 @@ export default function Chatrooms({ navigation }) {
   const [text, setText] = useState("");
   console.log(chatrooms);
 
+  useEffect(() => {
+    dispatch(fetchChatrooms());
+  }, []);
+
   const renderItem = ({ item }) => (
     <TouchableOpacity>
       <Text>{item.title}</Text>
-      <Button title="Delete this chatroom" onPress={() => dispatch(deleteChatroom(item.title))} />
+      <Button title="Delete this chatroom" onPress={() => dispatch(deleteChatroom(item.id))} />
     </TouchableOpacity>
   );
 

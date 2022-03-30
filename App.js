@@ -4,18 +4,19 @@ import HomeScreen from "./screens/HomeScreen";
 import ChatScreen from "./screens/ChatScreen";
 import DiscoverScreen from "./screens/DiscoverScreen";
 import MenuScreen from "./screens/MenuScreen";
-
+import ReduxThunk from "redux-thunk";
 import { Provider } from "react-redux";
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import chatReducer from "./store/reducers/ChatReducer";
+import SignupScreen from "./screens/SignupScreen";
+import userReducer from "./store/reducers/UserReducer";
 
 const rootReducer = combineReducers({
   chat: chatReducer,
-  // posts: postReducer,
-  // events: eventReducer
+  user: userReducer,
 });
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
     <Provider store={store}>
       <NavigationContainer>
         <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Home" component={SignupScreen} />
           <Tab.Screen name="Discover" component={DiscoverScreen} />
           <Tab.Screen name="Chat" component={ChatScreen} options={{ tabBarBadge: 3 }} />
           <Tab.Screen name="Menu" component={MenuScreen} />
