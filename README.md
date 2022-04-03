@@ -1,6 +1,6 @@
 # CBS React Native app
 
-## To install run 
+## To start the project
 
 ``` npm install ```
 
