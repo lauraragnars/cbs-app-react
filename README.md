@@ -2,14 +2,14 @@
 
 ## First steps
 
-### install Expo
+### Install Expo
 
 ```npm install --global expo-cli```
 
-### install the project dependencies 
+### Install the project dependencies 
 
 ``` npm install ```
 
-### start the project
+### Start the project
 
 ``` npm start ```
