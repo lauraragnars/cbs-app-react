@@ -1,6 +1,6 @@
 import { Text, View, Button } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { subtract, toggleHappy, add } from "../store/actions/ChatActions";
+import { subtract, toggleHappy, add } from "../../store/actions/ChatActions";
 
 export default function HomeScreen() {
   const isHappy = useSelector((state) => state.chat.isHappy); // subscribing to the store's chat slice/part

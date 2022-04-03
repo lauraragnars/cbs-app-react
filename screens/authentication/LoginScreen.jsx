@@ -1,9 +1,9 @@
 import { View, Text, TextInput, Button } from "react-native";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signup } from "../store/actions/UserActions";
+import { login } from "../../store/actions/UserActions";
 
-const SignupScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -11,14 +11,12 @@ const SignupScreen = ({ navigation }) => {
   console.log(userTest, "test user");
   return (
     <View>
-      <Text>Signup</Text>
+      <Text>Login</Text>
       <TextInput placeholder="Email" onChangeText={setEmail} value={email} />
-
       <TextInput textContentType="password" placeholder="Password" onChangeText={setPassword} value={password} />
-
-      <Button title="Signup" onPress={() => dispatch(signup(email, password))} />
+      <Button title="Login" onPress={() => dispatch(login(email, password))} />
     </View>
   );
 };
 
-export default SignupScreen;
+export default LoginScreen;

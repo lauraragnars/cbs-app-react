@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Chatrooms from "./Chatrooms";
-import Screen3 from "./Screen3";
-import Screen4 from "./Screen4";
+import Chatrooms from "../Chatrooms";
+import Screen3 from "../Screen3";
+import Screen4 from "../Screen4";
 
 export default function ChatScreen() {
   const Stack = createNativeStackNavigator();

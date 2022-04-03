@@ -1,0 +1,24 @@
+import { View, Text, TextInput, Button } from "react-native";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { signup } from "../../store/actions/UserActions";
+
+const SignupScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const userTest = useSelector((state) => state.user.email);
+  console.log(userTest, "test user");
+  return (
+    <View>
+      <Text>Signup</Text>
+      <TextInput placeholder="Email" onChangeText={setEmail} value={email} />
+
+      <TextInput textContentType="password" placeholder="Password" onChangeText={setPassword} value={password} />
+
+      <Button title="Signup" onPress={() => dispatch(signup(email, password))} />
+    </View>
+  );
+};
+
+export default SignupScreen;
