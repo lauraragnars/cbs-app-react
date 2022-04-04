@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP } from "../actions/UserActions";
+import { LOGIN, SIGNUP, STORE_USER } from "../actions/UserActions";
 
 const initialState = {
   idToken: null,
@@ -12,6 +12,9 @@ const userReducer = (state = initialState, action) => {
       console.log(action.payload);
       return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     case LOGIN:
+      console.log(action.payload);
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+    case STORE_USER:
       console.log(action.payload);
       return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     default:

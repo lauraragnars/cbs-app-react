@@ -1,5 +1,8 @@
+import * as SecureStore from "expo-secure-store";
+
 export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
+export const STORE_USER = "STOR_EUSER";
 
 export const login = (email, password) => {
   return async (dispatch) => {
@@ -23,6 +26,8 @@ export const login = (email, password) => {
     if (!response.ok) {
       //There was a problem.
     } else {
+      await SecureStore.setItemAsync("email", data.email);
+      await SecureStore.setItemAsync("idToken", data.idToken);
       dispatch({ type: LOGIN, payload: { email: data.email, idToken: data.idToken } });
     }
   };
@@ -47,7 +52,13 @@ export const signup = (email, password) => {
     if (!response.ok) {
       //There was a problem.
     } else {
+      await SecureStore.setItemAsync("email", data.email);
+      await SecureStore.setItemAsync("idToken", data.idToken);
       dispatch({ type: SIGNUP, payload: { email: data.email, idToken: data.idToken } });
     }
   };
+};
+
+export const storeUser = (email, token) => {
+  return { type: STORE_USER, payload: { email: email, idToken: token } };
 };
