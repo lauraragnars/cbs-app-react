@@ -20,7 +20,7 @@ export const subtract = () => {
 };
 
 export const fetchChatrooms = () => {
-  return async (dispatch, getState) => {
+  return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken;
     const response = await fetch("https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=" + idToken, {
       method: "GET",
@@ -45,8 +45,8 @@ export const fetchChatrooms = () => {
   };
 };
 
-export const addChatroom = (chatroomName) => {
-  return async (dispatch, getState) => {
+export const addChatroom = (chatroomName: string) => {
+  return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken;
     const response = await fetch("https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/chatrooms.json?auth=" + idToken, {
       method: "POST",
@@ -68,8 +68,8 @@ export const addChatroom = (chatroomName) => {
   };
 };
 
-export const deleteChatroom = (id) => {
-  return async (dispatch, getState) => {
+export const deleteChatroom = (id: string) => {
+  return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken;
     const response = await fetch("https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/" + id + ".json?auth=" + idToken, {
       method: "DELETE",

@@ -1,12 +1,23 @@
 import { LOGIN, SIGNUP, STORE_USER } from "../actions/UserActions";
 
-const initialState = {
-  idToken: null,
+export interface UserState {
+  idToken: string | undefined;
+  email: String | undefined;
+  password: string | undefined;
+}
+
+export interface ActionState {
+  type: string;
+  payload: any;
+}
+
+const initialState: UserState = {
+  idToken: undefined,
   email: "",
   password: "",
 };
 
-const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action: ActionState) => {
   switch (action.type) {
     case SIGNUP:
       console.log(action.payload);
