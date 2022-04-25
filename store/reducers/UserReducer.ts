@@ -4,6 +4,7 @@ export interface UserState {
   idToken: string | undefined;
   email: String | undefined;
   password: string | undefined;
+  username: string | undefined;
 }
 
 export interface ActionState {
@@ -15,6 +16,7 @@ const initialState: UserState = {
   idToken: undefined,
   email: "",
   password: "",
+  username: "Test",
 };
 
 const userReducer = (state = initialState, action: ActionState) => {

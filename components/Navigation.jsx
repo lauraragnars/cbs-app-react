@@ -10,6 +10,8 @@ import SignupScreen from "../screens/authentication/SignupScreen";
 import LoginScreen from "../screens/authentication/LoginScreen";
 import HomeScreen from "../screens/navigation/HomeScreen";
 import { useSelector } from "react-redux";
+import ProfileScreen from "../screens/ProfileScreen";
+import EditProfileScreen from "../screens/EditProfileScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -26,7 +28,7 @@ function MainNavigation() {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Discover" component={DiscoverScreen} />
       <Tab.Screen name="Chat" component={ChatScreen} options={{ tabBarBadge: 3 }} />
-      <Tab.Screen name="Menu" component={MenuScreen} />
+      <Tab.Screen name="Menu" component={MenuScreenNavigation} />
     </Tab.Navigator>
   );
 }
@@ -36,6 +38,15 @@ function Authentication() {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen name="Signup" component={SignupScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function MenuScreenNavigation() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="Profile" component={ProfileScreen} />
+      <Stack.Screen name="Edit profile" component={EditProfileScreen} />
     </Stack.Navigator>
   );
 }
