@@ -1,4 +1,4 @@
-# CBS React Native app
+# CBS React Native app – Exam project
 
 ## First steps
 
