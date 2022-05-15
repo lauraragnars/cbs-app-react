@@ -3,7 +3,9 @@ import { StatusBar } from "expo-status-bar";
 import { Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Todo } from "../Todo";
 
-export default function TodoScreen({ navigation }) {
+
+export default function TodoScreen({ navigation }: any) {
+
   const [text, setText] = useState("");
   const [todos, setTodos] = useState([]);
 
@@ -11,14 +13,14 @@ export default function TodoScreen({ navigation }) {
     const todo = new Todo(Math.random().toString(), text);
     // sama og þetta
     //const todo1 = { id: Math.random().toString(), text: text }
-    setTodos((oldTodos) => [...oldTodos, todo]);
+    setTodos((oldTodos): any => [...oldTodos, todo]);
     console.log(todos);
   };
 
-  const renderItem = ({ item }) => (
+  const renderItem = ({ item }: any) => (
     <View style={styles.item}>
       <Text>{item.text}</Text>
-      <TouchableOpacity onPress={() => setTodos(() => todos.filter((elm) => elm.id !== item.id))}>
+      <TouchableOpacity onPress={() => setTodos(() => todos.filter((elm: any) => elm.id !== item.id))}>
         <Text>Delete item</Text>
       </TouchableOpacity>
     </View>
@@ -35,7 +37,7 @@ export default function TodoScreen({ navigation }) {
 
         <Button title="Add todo" onPress={handleAddTodo} />
 
-        <FlatList data={todos} renderItem={renderItem} keyExtractor={(item) => item.id} />
+        <FlatList data={todos} renderItem={renderItem} keyExtractor={(item: any) => item.id} />
       </SafeAreaView>
       <StatusBar style="auto" />
     </View>

@@ -5,12 +5,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, storeUser } from "../../store/actions/UserActions";
 import { inputs } from "../../styles/Forms";
+import { RootState } from "../../App";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = ({ navigation }:any ) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const userTest = useSelector((state) => state.user.email);
+  const userTest = useSelector((state: RootState) => state.user.email);
   console.log(userTest, "test user");
 
   async function load() {

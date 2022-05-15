@@ -4,8 +4,8 @@ export const SIGNUP = "SIGNUP";
 export const LOGIN = "LOGIN";
 export const STORE_USER = "STOR_EUSER";
 
-export const login = (email, password) => {
-  return async (dispatch) => {
+export const login = (email: string, password: string) => {
+  return async (dispatch: Function) => {
     const response = await fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4",
       {
@@ -33,8 +33,8 @@ export const login = (email, password) => {
   };
 };
 
-export const signup = (email, password) => {
-  return async (dispatch) => {
+export const signup = (email: string, password: string) => {
+  return async (dispatch: Function) => {
     const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4", {
       method: "POST",
       headers: {
@@ -59,6 +59,6 @@ export const signup = (email, password) => {
   };
 };
 
-export const storeUser = (email, token) => {
+export const storeUser = (email: string, token: string) => {
   return { type: STORE_USER, payload: { email: email, idToken: token } };
 };

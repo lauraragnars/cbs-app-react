@@ -1,5 +1,6 @@
 import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS } from "../actions/ChatActions";
 import { Chatroom } from "../../entities/Chatroom";
+//import { Action } from "react-query/types/core/query";
 
 const initialState = {
   chatrooms: [],
@@ -8,7 +9,17 @@ const initialState = {
   name: "Laura",
 };
 
-const chatReducer = (state = initialState, action) => {
+export interface ActionInterface {
+  type: string;
+  payload: any;
+}
+
+export interface ChatroomInterface {
+  id: string,
+  text: string
+}
+
+const chatReducer = (state = initialState, action: ActionInterface) => {
   switch (action.type) {
     case ADD:
       return { ...state, counter: state.counter + 1 };
@@ -21,12 +32,10 @@ const chatReducer = (state = initialState, action) => {
     case ADD_CHATROOM:
       const chatroom = new Chatroom(action.payload.chatroomName, [], "", action.payload.id);
       return { ...state, chatrooms: [...state.chatrooms, chatroom] };
-    //const newChatroomArray = [...state.chatrooms, chatroom];
-    //return { ...state, chatrooms: newChatroomArray };
     case DELETE_CHATROOM:
       return {
         ...state,
-        chatrooms: state.chatrooms.filter((chatroom) => chatroom.id !== action.payload),
+        chatrooms: state.chatrooms.filter((chatroom: ChatroomInterface) => chatroom.id !== action.payload),
       };
     default:
       return state;

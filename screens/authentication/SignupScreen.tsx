@@ -4,12 +4,13 @@ import { View, Text, TextInput, Button } from "react-native";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signup, storeUser } from "../../store/actions/UserActions";
+import { RootState } from "../../App";
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const userTest = useSelector((state) => state.user.email);
+  const userTest = useSelector((state: RootState) => state.user.email);
 
   async function load() {
     const emailFromSecureStore = await SecureStore.getItemAsync("email");
