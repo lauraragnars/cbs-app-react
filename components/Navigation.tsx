@@ -1,34 +1,52 @@
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // Screens
 import ChatScreen from "../screens/navigation/ChatScreen";
 import DiscoverScreen from "../screens/navigation/DiscoverScreen";
-import MenuScreen from "../screens/navigation/MenuScreen";
 import SignupScreen from "../screens/authentication/SignupScreen";
 import LoginScreen from "../screens/authentication/LoginScreen";
 import HomeScreen from "../screens/navigation/HomeScreen";
 import { useSelector } from "react-redux";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
+import { RootState } from "../App";
+import Icon, { IconType } from "./Icon";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   console.log(user);
   return <>{user.idToken ? <MainNavigation /> : <Authentication />}</>;
+  //return <>{user.idToken ? <Authentication /> : <Authentication />}</>;
 }
 
 function MainNavigation() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Discover" component={DiscoverScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} options={{ tabBarBadge: 3 }} />
-      <Tab.Screen name="Menu" component={MenuScreenNavigation} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{
+        tabBarIcon: () => (
+          <Icon type={IconType.HOME} />
+        ),
+      }}  />
+      <Tab.Screen name="Discover" component={DiscoverScreen} options={{
+        tabBarIcon: () => (
+          <Icon type={IconType.SEARCH} />
+        ),
+      }} />
+      <Tab.Screen name="Chat" component={ChatScreen} options={{ 
+        tabBarBadge: 3, 
+        tabBarIcon: () => (
+          <Icon type={IconType.CHAT} />
+        ), 
+      }} />
+      <Tab.Screen name="Menu" component={MenuScreenNavigation} options={{ 
+        tabBarIcon: () => (
+          <Icon type={IconType.MENU} />
+        ), 
+      }} />
     </Tab.Navigator>
   );
 }

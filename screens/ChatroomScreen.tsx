@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../App";
 import { addChatroom, deleteChatroom, fetchChatrooms } from "../store/actions/ChatActions";
 
-export default function Chatrooms({ navigation }:any) {
+export default function ChatroomScreen() {
   const dispatch = useDispatch();
   const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
   const [text, setText] = useState("");
@@ -26,18 +26,8 @@ export default function Chatrooms({ navigation }:any) {
       <Text>Chatrooms</Text>
       <TextInput onChangeText={(newText) => setText(newText)} value={text} />
       <Button title="Add new chatroom"  onPress={() => dispatch(addChatroom(text))}></Button>
-      {/* keyExtractor={(item: any) => item.title} */}
-      {/* <View>
-        <Text>All chatrooms</Text>
-        {chatrooms.map((chatroom) => {
-          return <Text>{chatroom.title}</Text>;
-        })}
-      </View> */}
 
       <FlatList data={chatrooms} renderItem={renderItem} />
-
-      <Button title="Go to Screen 3" onPress={() => navigation.navigate("Screen 3")} />
-      <Button title="Go to Screen 4" onPress={() => navigation.navigate("Screen 4")} />
     </>
   );
 }
