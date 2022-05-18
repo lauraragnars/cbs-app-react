@@ -18,9 +18,8 @@ const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
   const user = useSelector((state: RootState) => state.user);
-  console.log(user);
+  console.log(user, "user on nav");
   return <>{user.idToken ? <MainNavigation /> : <Authentication />}</>;
-  //return <>{user.idToken ? <Authentication /> : <Authentication />}</>;
 }
 
 function MainNavigation() {

@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, STORE_USER } from "../actions/UserActions";
+import { LOGIN, SIGNUP, STORE_USER, LOGOUT } from "../actions/UserActions";
 
 export interface UserState {
   idToken: string | undefined;
@@ -16,20 +16,24 @@ const initialState: UserState = {
   idToken: undefined,
   email: "",
   password: "",
-  username: "",
+  username: "Test",
 };
 
 const userReducer = (state = initialState, action: ActionState) => {
   switch (action.type) {
     case SIGNUP:
-      console.log(action.payload);
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username};
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     case LOGIN:
-      console.log(action.payload);
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username};
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     case STORE_USER:
-      console.log(action.payload);
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email, username: action.payload.username };
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+    case LOGOUT:
+      return { 
+        idToken: undefined,
+        email: "",
+        password: "",
+        username: "", 
+      };
     default:
       return state;
   }
