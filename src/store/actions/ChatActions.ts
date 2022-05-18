@@ -30,7 +30,6 @@ export const fetchChatrooms = () => {
     });
 
     const data = await response.json(); // json to javascript
-    console.log(data, 'CHATROOMS FROM DATABASES');
     if (!response.ok) {
       //There was a problem..
     } else {
@@ -39,7 +38,6 @@ export const fetchChatrooms = () => {
         let chatroom = new Chatroom(data[key].chatroomName, [], '', key);
         chatrooms.push(chatroom);
       }
-      console.log(chatrooms, 'NEW CHATROOMS');
       dispatch({ type: FETCH_CHATROOMS, payload: chatrooms });
     }
   };

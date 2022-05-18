@@ -1,9 +1,12 @@
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
-export default function SingleChatroomScreen() {
+export default function SingleChatroomScreen({ route }: any) {
+  const { title, chatmessages } = route.params;
   return (
     <>
-      <Text>Single chatroom</Text>
+      <View>
+        <Text>{title}</Text>
+      </View>
     </>
   );
 }
