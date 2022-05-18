@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { variables } from "./Variables";
+import { StyleSheet } from 'react-native';
+import { variables } from './Variables';
 
 export const general = StyleSheet.create({
   background: {
@@ -8,6 +8,17 @@ export const general = StyleSheet.create({
     color: variables.colors.blue300
   },
   padding: {
-    padding: 15
+    paddingTop: 50,
+    paddingLeft: 15,
+    paddingRight: 15
+  },
+  errorMessage: {
+    color: variables.colors.red,
+    fontFamily: variables.fonts.openSans.bold,
+    fontSize: variables.fontSizes.xsmall,
+    marginTop: 15,
+    marginBottom: 15,
+    justifyContent: 'center',
+    alignSelf: 'center'
   }
 });

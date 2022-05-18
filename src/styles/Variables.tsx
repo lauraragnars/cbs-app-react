@@ -5,6 +5,7 @@ export const variables = {
     blue200: '#5050A5',
     blue300: '#32305D',
     gray: '#EEEEEE',
+    red: '#B10024',
   },
   fontSizes: {
     xsmall: 12,
