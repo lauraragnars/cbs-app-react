@@ -36,7 +36,7 @@ const SignupScreen = ({ navigation }: any) => {
 
   return (
     <View>
-      {/* <Icon type={IconType.LOGO} /> */}
+      <Image source={require("../../../assets/cbs-logo.png")} />
       <Text style={styles.header}>Signup to get access</Text>
       {/* <InputField label="Username" textContentType="username" placeholder="Username" isValid={isUsernameValid} setIsValid={setIsUsernameValid} text={username} setText={setUsername} /> */}
       <View style={styles.formContainer}>
