@@ -1,5 +1,5 @@
-import { StyleSheet } from "react-native";
-import { variables } from "./Variables";
+import { StyleSheet } from 'react-native';
+import { variables } from './Variables';
 
 export const typography = StyleSheet.create({
   h1: {

@@ -1,4 +1,4 @@
-import { LOGIN, SIGNUP, STORE_USER, LOGOUT } from "../actions/UserActions";
+import { LOGIN, SIGNUP, STORE_USER, LOGOUT, REQUEST_RESET_PASSWORD } from '../actions/UserActions';
 
 export interface UserState {
   idToken: string | undefined;
@@ -14,9 +14,9 @@ export interface ActionState {
 
 const initialState: UserState = {
   idToken: undefined,
-  email: "",
-  password: "",
-  username: "Test",
+  email: '',
+  password: '',
+  username: 'Test'
 };
 
 const userReducer = (state = initialState, action: ActionState) => {
@@ -27,12 +27,14 @@ const userReducer = (state = initialState, action: ActionState) => {
       return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     case STORE_USER:
       return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+    case REQUEST_RESET_PASSWORD:
+      return { ...state, email: action.payload.email };
     case LOGOUT:
-      return { 
+      return {
         idToken: undefined,
-        email: "",
-        password: "",
-        username: "", 
+        email: '',
+        password: '',
+        username: ''
       };
     default:
       return state;

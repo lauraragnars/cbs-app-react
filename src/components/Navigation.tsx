@@ -13,6 +13,8 @@ import EditProfileScreen from '../screens/EditProfileScreen';
 import { RootState } from '../../App';
 import Icon, { IconType } from './Icon';
 import { variables } from '../styles/Variables';
+import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
+import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -87,6 +89,8 @@ function Authentication() {
     >
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='Signup' component={SignupScreen} />
+      <Stack.Screen name='ResetPassword' component={ResetPasswordScreen} />
+      <Stack.Screen name='VerifyResetPassword' component={VerifyResetPasswordScreen} />
     </Stack.Navigator>
   );
 }
