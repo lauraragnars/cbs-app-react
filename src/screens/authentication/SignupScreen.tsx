@@ -7,7 +7,6 @@ import { signup, storeUser } from '../../store/actions/UserActions';
 import InputField from '../../components/InputField';
 import { Button } from '../../components/Button';
 import { variables } from '../../styles/Variables';
-import Icon, { IconType } from '../../components/Icon';
 import { forms } from '../../styles/Forms';
 import { typography } from '../../styles/Typography';
 import { general } from '../../styles/General';
@@ -91,17 +90,17 @@ const SignupScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   tiny: {
-    width: '5%'
+    width: '5%',
   },
   center: {
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300
-  }
+    color: variables.colors.blue300,
+  },
 });
 
 export default SignupScreen;
