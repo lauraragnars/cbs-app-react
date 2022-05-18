@@ -3,17 +3,16 @@ import { useState } from "react";
 
 interface InputFieldProps {
   label: string;
-  errorMessage: string;
+  errorMessage?: string;
   placeholder: string;
-  //inputValue: string;
   isValid: boolean;
   setIsValid: Function;
   text?: string;
   setText: Function;
+  textContentType?: any;
 }
 
-export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText }: InputFieldProps) {
-  //const [text, setText] = useState(inputValue);
+export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, textContentType="none" }: InputFieldProps) {
   const [entered, setEntered] = useState(false);
 
   const handleChangeText = (text: string) => {
@@ -32,7 +31,7 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
   return (
     <View>
       <Text>{label}</Text>
-      <TextInput onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
+      <TextInput textContentType={textContentType} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
       {!isValid && entered && <Text>{errorMessage}</Text>}
     </View>
   );

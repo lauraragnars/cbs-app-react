@@ -33,7 +33,7 @@ export const login = (email: string, password: string) => {
   };
 };
 
-export const signup = (email: string, password: string) => {
+export const signup = (email: string, password: string, username: string) => {
   return async (dispatch: Function) => {
     const response = await fetch("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4", {
       method: "POST",
@@ -44,6 +44,7 @@ export const signup = (email: string, password: string) => {
         email: email,
         password: password,
         returnSecureToken: true,
+        username: username,
       }),
     });
 
@@ -54,7 +55,7 @@ export const signup = (email: string, password: string) => {
     } else {
       await SecureStore.setItemAsync("email", data.email);
       await SecureStore.setItemAsync("idToken", data.idToken);
-      dispatch({ type: SIGNUP, payload: { email: data.email, idToken: data.idToken } });
+      dispatch({ type: SIGNUP, payload: { email: data.email, idToken: data.idToken, username: data.username, firstName: data.firstName, lastName: data.lastName } });
     }
   };
 };
