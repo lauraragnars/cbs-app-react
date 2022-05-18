@@ -23,7 +23,6 @@ export default function ChatroomScreen() {
 
   return (
     <>
-      <Text>Chatrooms</Text>
       <TextInput onChangeText={(newText) => setText(newText)} value={text} />
       <Button title="Add new chatroom"  onPress={() => dispatch(addChatroom(text))}></Button>
 

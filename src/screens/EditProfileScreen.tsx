@@ -11,10 +11,11 @@ export default function EditProfileScreen({}) {
   const user = useSelector((state: RootState) => state.user);
   const [text, setText] = useState(user.username);
   const [text2, setText2] = useState(user.username);
+  const isFormValid = inputValid1 && inputValid2
 
   return (
     <>
-      <Text>Is form valid? {inputValid1 && inputValid2 ? "Yes" : "No"}</Text>
+      <Text>Is form valid? {isFormValid ? "Yes" : "No"}</Text>
       <Text>Edit Profile</Text>
       <InputField
         isValid={inputValid1}
