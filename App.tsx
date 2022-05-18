@@ -6,7 +6,6 @@ import userReducer from "./src/store/reducers/UserReducer";
 import Navigation from "./src/components/Navigation";
 import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from 'expo-app-loading';
-//import { useFonts } from 'expo-font';
 import { 
   useFonts,
   OpenSans_300Light,
@@ -25,7 +24,7 @@ import {
 
 const rootReducer = combineReducers({
   chat: chatReducer,
-  user: userReducer,
+  user: userReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

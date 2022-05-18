@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import * as SecureStore from "expo-secure-store";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup, storeUser } from "../../store/actions/UserActions";
 import InputField from "../../components/InputField";
+import { PrimaryButton } from "../../components/PrimaryButton";
+import { variables } from "../../styles/Variables";
+import Icon, { IconType } from "../../components/Icon";
 
 const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
@@ -33,14 +36,29 @@ const SignupScreen = ({ navigation }: any) => {
 
   return (
     <View>
-      <Text>Signup</Text>
+      {/* <Icon type={IconType.LOGO} /> */}
+      <Text style={styles.header}>Signup to get access</Text>
       {/* <InputField label="Username" textContentType="username" placeholder="Username" isValid={isUsernameValid} setIsValid={setIsUsernameValid} text={username} setText={setUsername} /> */}
-      <InputField label="Email" textContentType="emailAddress"  placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
-      <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
-      <Button title="Signup" onPress={() => dispatch(signup(email, password ))} />
-      <Button title="Already have an account? Login" onPress={() => navigation.navigate("Login")} />
+      <View style={styles.formContainer}>
+        <InputField label="Email" textContentType="emailAddress" placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+        <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
+      </View>
+
+      <PrimaryButton title="Get access" onPress={() => dispatch(signup(email, password))} />
+      <PrimaryButton title="Already have an account? Login" onPress={() => navigation.navigate("Login")} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 18
+  },
+  formContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: variables.colors.white
+  }
+});
 
 export default SignupScreen;
