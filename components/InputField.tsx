@@ -1,5 +1,7 @@
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, StyleSheet } from "react-native";
 import { useState } from "react";
+import { inputs } from "../styles/Forms";
+import { variables } from "../styles/Variables";
 
 interface InputFieldProps {
   label: string;
@@ -12,7 +14,7 @@ interface InputFieldProps {
   textContentType?: any;
 }
 
-export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, textContentType="none" }: InputFieldProps) {
+export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, textContentType = "none" }: InputFieldProps) {
   const [entered, setEntered] = useState(false);
 
   const handleChangeText = (text: string) => {
@@ -29,10 +31,17 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
     setEntered(true);
   };
   return (
-    <View>
-      <Text>{label}</Text>
+    <View style={inputs.inputField}>
+      <Text style={styles.label}>{label}</Text>
       <TextInput textContentType={textContentType} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
       {!isValid && entered && <Text>{errorMessage}</Text>}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  label: {
+    fontSize: 10,
+    textTransform: "uppercase"
+  }
+});

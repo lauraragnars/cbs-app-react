@@ -8,7 +8,7 @@ import { NavigationContainer } from "@react-navigation/native";
 
 const rootReducer = combineReducers({
   chat: chatReducer,
-  user: userReducer,
+  user: userReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
