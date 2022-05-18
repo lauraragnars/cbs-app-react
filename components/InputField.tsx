@@ -8,7 +8,7 @@ interface InputFieldProps {
   //inputValue: string;
   isValid: boolean;
   setIsValid: Function;
-  text: string;
+  text?: string;
   setText: Function;
 }
 
