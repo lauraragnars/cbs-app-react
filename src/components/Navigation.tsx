@@ -31,7 +31,12 @@ function MainNavigation() {
           <Icon fill={variables.colors.blue200} type={IconType.HOME} />
         ),
         tabBarIconStyle: {
-          margin: 7,
+          marginTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Teko_500Medium',
+          fontSize: 16,
+          marginBottom: -5
         }
       }}  />
       <Tab.Screen name="Discover" component={DiscoverScreen} options={{
@@ -39,8 +44,13 @@ function MainNavigation() {
           <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />
         ),
         tabBarIconStyle: {
-          margin: 7,
-        }
+          marginTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Teko_500Medium',
+          fontSize: 16,
+          marginBottom: -5
+        },
       }} />
       <Tab.Screen name="Chat" component={ChatScreen} options={{ 
         tabBarBadge: 3, 
@@ -48,19 +58,26 @@ function MainNavigation() {
           <Icon fill={variables.colors.blue200} type={IconType.CHAT} />
         ), 
         tabBarIconStyle: {
-          margin: 7,
+          marginTop: 10,
         },
-        // tabBarLabelStyle: {
-        //   fontFamily: 'Teko_500Medium'
-        // }
+        tabBarLabelStyle: {
+          fontFamily: 'Teko_500Medium',
+          fontSize: 16,
+          marginBottom: -5
+        }
       }} />
       <Tab.Screen name="Menu" component={MenuScreenNavigation} options={{ 
         tabBarIcon: () => (
           <Icon fill={variables.colors.blue200} type={IconType.MENU} />
         ), 
         tabBarIconStyle: {
-          margin: 7,
-        }
+          marginTop: 10,
+        },
+        tabBarLabelStyle: {
+          fontFamily: 'Teko_500Medium',
+          fontSize: 16,
+          marginBottom: -5
+        },
       }} />
     </Tab.Navigator>
   );
