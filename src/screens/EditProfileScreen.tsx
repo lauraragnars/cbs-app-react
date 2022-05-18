@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Text } from "react-native";
 import { useSelector } from "react-redux";
+import { RootState } from "../../App";
 import InputField from "../components/InputField";
 
 export default function EditProfileScreen({}) {
   const [inputValid1, setInputValid1] = useState(false);
   const [inputValid2, setInputValid2] = useState(false);
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   const [text, setText] = useState(user.username);
   const [text2, setText2] = useState(user.username);
-  console.log(inputValid1, text);
 
   return (
     <>

@@ -1,5 +1,5 @@
 import { Text, View, Button } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { logout } from "../../store/actions/UserActions";
 
 export default function HomeScreen() {
@@ -8,7 +8,7 @@ export default function HomeScreen() {
   return (
     <>
       <View>
-        <Text>Home screen</Text>
+        <Text style={{ fontFamily: 'Teko_500Medium', fontSize: 40 }}>Home screen</Text>
         <Button onPress={() => dispatch(logout())} title="logout"></Button>
       </View>
     </>

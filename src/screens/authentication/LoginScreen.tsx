@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, storeUser } from "../../store/actions/UserActions";
 import { inputs } from "../../styles/Forms";
-import { RootState } from "../../App";
+import { RootState } from "../../../App";
 
 const LoginScreen = ({ navigation }:any ) => {
   const [email, setEmail] = useState("");

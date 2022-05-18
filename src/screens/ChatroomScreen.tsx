@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Text, TextInput, FlatList, TouchableOpacity } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../App";
+import { RootState } from "../../App";
 import { addChatroom, deleteChatroom, fetchChatrooms } from "../store/actions/ChatActions";
 
 export default function ChatroomScreen() {

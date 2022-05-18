@@ -1,4 +1,4 @@
-import { Chatroom } from "../../entities/Chatroom";
+import { Chatroom } from "../../../entities/Chatroom";
 
 export const TOGGLE_HAPPY = "TOGGLE_HAPPY";
 export const ADD = "ADD";

@@ -1,5 +1,5 @@
 import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS } from "../actions/ChatActions";
-import { Chatroom } from "../../entities/Chatroom";
+import { Chatroom } from "../../../entities/Chatroom";
 //import { Action } from "react-query/types/core/query";
 
 const initialState = {

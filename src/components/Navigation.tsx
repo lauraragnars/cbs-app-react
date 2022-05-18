@@ -10,8 +10,9 @@ import HomeScreen from "../screens/navigation/HomeScreen";
 import { useSelector } from "react-redux";
 import ProfileScreen from "../screens/ProfileScreen";
 import EditProfileScreen from "../screens/EditProfileScreen";
-import { RootState } from "../App";
+import { RootState } from "../../App";
 import Icon, { IconType } from "./Icon";
+import { variables } from "../styles/Variables";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -27,24 +28,39 @@ function MainNavigation() {
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarIcon: () => (
-          <Icon type={IconType.HOME} />
+          <Icon fill={variables.colors.blue200} type={IconType.HOME} />
         ),
+        tabBarIconStyle: {
+          margin: 7,
+        }
       }}  />
       <Tab.Screen name="Discover" component={DiscoverScreen} options={{
         tabBarIcon: () => (
-          <Icon type={IconType.SEARCH} />
+          <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />
         ),
+        tabBarIconStyle: {
+          margin: 7,
+        }
       }} />
       <Tab.Screen name="Chat" component={ChatScreen} options={{ 
         tabBarBadge: 3, 
         tabBarIcon: () => (
-          <Icon type={IconType.CHAT} />
+          <Icon fill={variables.colors.blue200} type={IconType.CHAT} />
         ), 
+        tabBarIconStyle: {
+          margin: 7,
+        },
+        // tabBarLabelStyle: {
+        //   fontFamily: 'Teko_500Medium'
+        // }
       }} />
       <Tab.Screen name="Menu" component={MenuScreenNavigation} options={{ 
         tabBarIcon: () => (
-          <Icon type={IconType.MENU} />
+          <Icon fill={variables.colors.blue200} type={IconType.MENU} />
         ), 
+        tabBarIconStyle: {
+          margin: 7,
+        }
       }} />
     </Tab.Navigator>
   );
