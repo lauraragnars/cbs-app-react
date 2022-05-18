@@ -5,22 +5,9 @@ import chatReducer from "./src/store/reducers/ChatReducer";
 import userReducer from "./src/store/reducers/UserReducer";
 import Navigation from "./src/components/Navigation";
 import { NavigationContainer } from "@react-navigation/native";
-import AppLoading from 'expo-app-loading';
-import { 
-  useFonts,
-  OpenSans_300Light,
-  OpenSans_400Regular,
-  OpenSans_600SemiBold,
-  OpenSans_700Bold,
-  OpenSans_800ExtraBold,
-} from '@expo-google-fonts/open-sans'
-import { 
-  Teko_300Light,
-  Teko_400Regular,
-  Teko_500Medium,
-  Teko_600SemiBold,
-  Teko_700Bold 
-} from '@expo-google-fonts/teko'
+import AppLoading from "expo-app-loading";
+import { useFonts, OpenSans_300Light, OpenSans_400Regular, OpenSans_600SemiBold, OpenSans_700Bold, OpenSans_800ExtraBold } from "@expo-google-fonts/open-sans";
+import { Teko_300Light, Teko_400Regular, Teko_500Medium, Teko_600SemiBold, Teko_700Bold } from "@expo-google-fonts/teko";
 
 const rootReducer = combineReducers({
   chat: chatReducer,
@@ -42,7 +29,7 @@ export default function App() {
     Teko_400Regular,
     Teko_500Medium,
     Teko_600SemiBold,
-    Teko_700Bold 
+    Teko_700Bold
   });
 
   if (!fontsLoaded) {

@@ -1,19 +1,15 @@
 import { StyleSheet } from "react-native";
 import { variables } from "./Variables";
 
-export const inputs = StyleSheet.create({
-  inputField: {
-    borderColor: variables.colors.gray,
-    padding: 10,
-    borderStyle: "solid",
-    borderWidth: 1,
-    width: "100%"
-  },
-
+export const forms = StyleSheet.create({
   formContainer: {
-    flex: 0.5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: variables.colors.white
+    backgroundColor: variables.colors.white,
+    borderWidth: 1,
+    borderStyle: "solid",
+    borderColor: variables.colors.gray,
+    borderRadius: 5,
+    marginBottom: 10
   }
 });

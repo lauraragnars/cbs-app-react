@@ -8,7 +8,7 @@ export const variables = {
   },
   fontSizes: {
     xsmall: 12,
-    normal: 16,
+    normal: 15,
     large: 26
   },
   fonts: {

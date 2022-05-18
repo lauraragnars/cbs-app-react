@@ -7,7 +7,10 @@ import { signup, storeUser } from "../../store/actions/UserActions";
 import InputField from "../../components/InputField";
 import { PrimaryButton } from "../../components/PrimaryButton";
 import { variables } from "../../styles/Variables";
-import Icon, { IconType } from "../../components/Icon";
+// import Icon, { IconType } from "../../components/Icon";
+import { forms } from "../../styles/Forms";
+import { typography } from "../../styles/Typography";
+import { general } from "../../styles/General";
 
 const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
@@ -35,12 +38,15 @@ const SignupScreen = ({ navigation }: any) => {
   }, []);
 
   return (
-    <View>
-      <Image source={require("../../../assets/cbs-logo.png")} />
-      <Text style={styles.header}>Signup to get access</Text>
+    <View style={general.padding}>
+      <View style={styles.center}>
+        <Image source={require("../../../assets/cbs-logo.png")} />
+      </View>
+
+      <Text style={typography.h1}>Signup to get access</Text>
       {/* <InputField label="Username" textContentType="username" placeholder="Username" isValid={isUsernameValid} setIsValid={setIsUsernameValid} text={username} setText={setUsername} /> */}
-      <View style={styles.formContainer}>
-        <InputField label="Email" textContentType="emailAddress" placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+      <View style={forms.formContainer}>
+        <InputField label="E-mail" textContentType="emailAddress" placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
         <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
       </View>
 
@@ -51,13 +57,14 @@ const SignupScreen = ({ navigation }: any) => {
 };
 
 const styles = StyleSheet.create({
-  header: {
-    fontSize: 18
-  },
-  formContainer: {
+  center: {
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: variables.colors.white
+    alignItems: "center"
+  },
+  header: {
+    fontSize: variables.fontSizes.large,
+    fontFamily: variables.fonts.teko.medium,
+    color: variables.colors.blue300
   }
 });
 

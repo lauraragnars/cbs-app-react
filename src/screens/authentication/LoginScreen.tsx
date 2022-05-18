@@ -1,15 +1,23 @@
 import * as SecureStore from "expo-secure-store";
 import { useEffect } from "react";
-import { View, Text, TextInput, Button } from "react-native";
+import { View, Text, StyleSheet, Image } from "react-native";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, storeUser } from "../../store/actions/UserActions";
-import { inputs } from "../../styles/Forms";
+import { forms } from "../../styles/Forms";
 import { RootState } from "../../../App";
+import InputField from "../../components/InputField";
+import { PrimaryButton } from "../../components/PrimaryButton";
+import { variables } from "../../styles/Variables";
+import { typography } from "../../styles/Typography";
+import { general } from "../../styles/General";
 
-const LoginScreen = ({ navigation }:any ) => {
+const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  //const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
   const dispatch = useDispatch();
   const userTest = useSelector((state: RootState) => state.user.email);
 
@@ -30,14 +38,36 @@ const LoginScreen = ({ navigation }:any ) => {
   }, []);
 
   return (
-    <View>
-      <Text>Login</Text>
-      <TextInput style={inputs.inputField} placeholder="Email" onChangeText={setEmail} value={email} />
-      <TextInput style={inputs.inputField} textContentType="password" placeholder="Password" onChangeText={setPassword} value={password} />
-      <Button title="Login" onPress={() => dispatch(login(email, password))} />
-      <Button title="Don't have an account? Signup" onPress={() => navigation.navigate("Signup")} />
+    <View style={general.padding}>
+      <View style={styles.center}>
+        <Image source={require("../../../assets/cbs-logo.png")} />
+      </View>
+      <Text style={typography.h1}>Log in</Text>
+      {/* <TextInput style={inputs.inputField} placeholder="Email" onChangeText={setEmail} value={email} />
+      <TextInput style={inputs.inputField} textContentType="password" placeholder="Password" onChangeText={setPassword} value={password} /> */}
+      <View style={forms.formContainer}>
+        <InputField label="E-mail" textContentType="emailAddress" placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+        <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
+      </View>
+      <PrimaryButton title="Login" onPress={() => dispatch(login(email, password))} />
+      <PrimaryButton title="Don't have an account? Signup" onPress={() => navigation.navigate("Signup")} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  whiteBackground: {
+    backgroundColor: variables.colors.white
+  },
+  center: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  header: {
+    fontSize: variables.fontSizes.large,
+    fontFamily: variables.fonts.teko.medium,
+    color: variables.colors.blue300
+  }
+});
 
 export default LoginScreen;

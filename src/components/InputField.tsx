@@ -1,6 +1,6 @@
 import { Text, TextInput, View, StyleSheet } from "react-native";
 import { useState } from "react";
-import { inputs } from "../styles/Forms";
+// import { forms } from "../styles/Forms";
 import { variables } from "../styles/Variables";
 
 interface InputFieldProps {
@@ -31,9 +31,9 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
     setEntered(true);
   };
   return (
-    <View style={inputs.inputField}>
+    <View style={styles.inputField}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput textContentType={textContentType} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
+      <TextInput style={styles.inputText} textContentType={textContentType} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
       {!isValid && entered && <Text>{errorMessage}</Text>}
     </View>
   );
@@ -41,7 +41,21 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
 
 const styles = StyleSheet.create({
   label: {
-    fontSize: 10,
+    fontFamily: variables.fonts.openSans.bold,
+    fontSize: variables.fontSizes.xsmall,
+    color: variables.colors.blue300,
     textTransform: "uppercase"
+  },
+  inputText: {
+    fontFamily: variables.fonts.openSans.regular,
+    fontSize: variables.fontSizes.normal,
+    color: variables.colors.blue300
+  },
+  inputField: {
+    borderColor: variables.colors.gray,
+    padding: 10,
+    borderStyle: "solid",
+    width: "100%",
+    borderBottomWidth: 1
   }
 });

@@ -14,16 +14,15 @@ export const PrimaryButton = ({ onPress, title }: PrimaryButtonProps) => (
 
 const styles = StyleSheet.create({
   buttonContainer: {
-    backgroundColor: variables.colors.blue300,
+    backgroundColor: variables.colors.blue200,
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
     margin: 5
   },
   buttonText: {
-    fontSize: 14,
-    color: variables.colors.white,
-    fontWeight: "bold",
-    alignSelf: "center"
+    fontSize: variables.fontSizes.normal,
+    fontFamily: variables.fonts.openSans.semibold,
+    color: variables.colors.white
   }
 });
