@@ -24,44 +24,46 @@ export default function Navigation() {
 }
 
 function MainNavigation() {
+  // const { routeName } = navigation.state;
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{
+      tabBarIconStyle: {
+        marginTop: 10,
+      },
+      tabBarLabelStyle: {
+        fontFamily: 'Teko_500Medium',
+        fontSize: 16,
+        marginBottom: -5
+      },
+      headerTitleStyle: {
+        fontFamily: 'Teko_500Medium',
+        fontSize: variables.fontSizes.large,
+        color: variables.colors.blue200,
+        textTransform: 'uppercase'
+      },
+      tabBarActiveTintColor: variables.colors.blue200
+    }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarIcon: () => (
           <Icon fill={variables.colors.blue200} type={IconType.HOME} />
-        ),
-        tabBarIconStyle: {
-          margin: 7,
-        }
+        )
       }}  />
       <Tab.Screen name="Discover" component={DiscoverScreen} options={{
         tabBarIcon: () => (
           <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />
-        ),
-        tabBarIconStyle: {
-          margin: 7,
-        }
+        )
       }} />
       <Tab.Screen name="Chat" component={ChatScreen} options={{ 
         tabBarBadge: 3, 
         tabBarIcon: () => (
           <Icon fill={variables.colors.blue200} type={IconType.CHAT} />
-        ), 
-        tabBarIconStyle: {
-          margin: 7,
-        },
-        // tabBarLabelStyle: {
-        //   fontFamily: 'Teko_500Medium'
-        // }
+        )
       }} />
       <Tab.Screen name="Menu" component={MenuScreenNavigation} options={{ 
         tabBarIcon: () => (
           <Icon fill={variables.colors.blue200} type={IconType.MENU} />
-        ), 
-        tabBarIconStyle: {
-          margin: 7,
-        }
-      }} />
+        )
+      }} /> 
     </Tab.Navigator>
   );
 }
@@ -77,7 +79,9 @@ function Authentication() {
 
 function MenuScreenNavigation() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
       <Stack.Screen name="Profile" component={ProfileScreen} />
       <Stack.Screen name="Edit profile" component={EditProfileScreen} />
     </Stack.Navigator>

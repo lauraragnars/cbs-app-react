@@ -4,10 +4,12 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import chatReducer from "./src/store/reducers/ChatReducer";
 import userReducer from "./src/store/reducers/UserReducer";
 import Navigation from "./src/components/Navigation";
-import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { useFonts, OpenSans_300Light, OpenSans_400Regular, OpenSans_600SemiBold, OpenSans_700Bold, OpenSans_800ExtraBold } from "@expo-google-fonts/open-sans";
 import { Teko_300Light, Teko_400Regular, Teko_500Medium, Teko_600SemiBold, Teko_700Bold } from "@expo-google-fonts/teko";
+import { NavigationContainer, DefaultTheme} from "@react-navigation/native";
+
+import { variables } from "./src/styles/Variables";
 
 const rootReducer = combineReducers({
   chat: chatReducer,
@@ -36,9 +38,17 @@ export default function App() {
     return <AppLoading />;
   }
 
+  const CustomTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      background: variables.colors.white
+    },
+  };
+
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer theme={CustomTheme}>
         <Navigation />
       </NavigationContainer>
     </Provider>

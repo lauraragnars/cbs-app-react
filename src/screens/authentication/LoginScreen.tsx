@@ -7,7 +7,7 @@ import { login, storeUser } from "../../store/actions/UserActions";
 import { forms } from "../../styles/Forms";
 import { RootState } from "../../../App";
 import InputField from "../../components/InputField";
-import { PrimaryButton } from "../../components/PrimaryButton";
+import { Button } from "../../components/Button";
 import { variables } from "../../styles/Variables";
 import { typography } from "../../styles/Typography";
 import { general } from "../../styles/General";
@@ -49,8 +49,8 @@ const LoginScreen = ({ navigation }: any) => {
         <InputField label="E-mail" textContentType="emailAddress" placeholder="Email" isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
         <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
       </View>
-      <PrimaryButton title="Login" onPress={() => dispatch(login(email, password))} />
-      <PrimaryButton title="Don't have an account? Signup" onPress={() => navigation.navigate("Signup")} />
+      <Button title="Login" onPress={() => dispatch(login(email, password))} />
+      <Button title="Don't have an account? Signup" onPress={() => navigation.navigate("Signup")} />
     </View>
   );
 };

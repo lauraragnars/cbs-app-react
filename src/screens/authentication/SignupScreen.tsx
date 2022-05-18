@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { signup, storeUser } from "../../store/actions/UserActions";
 import InputField from "../../components/InputField";
-import { PrimaryButton } from "../../components/PrimaryButton";
+import { Button } from "../../components/Button";
 import { variables } from "../../styles/Variables";
 // import Icon, { IconType } from "../../components/Icon";
 import { forms } from "../../styles/Forms";
@@ -50,8 +50,8 @@ const SignupScreen = ({ navigation }: any) => {
         <InputField label="Password" textContentType="password" placeholder="Password" isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
       </View>
 
-      <PrimaryButton title="Get access" onPress={() => dispatch(signup(email, password))} />
-      <PrimaryButton title="Already have an account? Login" onPress={() => navigation.navigate("Login")} />
+      <Button title="Get access" onPress={() => dispatch(signup(email, password))} />
+      <Button title="Already have an account? Login" onPress={() => navigation.navigate("Login")} />
     </View>
   );
 };

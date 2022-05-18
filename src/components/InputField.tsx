@@ -1,6 +1,5 @@
 import { Text, TextInput, View, StyleSheet } from "react-native";
-import { useState } from "react";
-// import { forms } from "../styles/Forms";
+import { useEffect, useState } from "react";
 import { variables } from "../styles/Variables";
 
 interface InputFieldProps {
@@ -12,10 +11,19 @@ interface InputFieldProps {
   text?: string;
   setText: Function;
   textContentType?: any;
+  disabled?: boolean;
 }
 
-export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, textContentType = "none" }: InputFieldProps) {
+export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, textContentType = "none", disabled = false }: InputFieldProps) {
   const [entered, setEntered] = useState(false);
+
+  useEffect(() => {
+    if (text === "") {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  }, []);
 
   const handleChangeText = (text: string) => {
     setText(text);
@@ -30,6 +38,7 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
   const handleOnBlur = (b: any) => {
     setEntered(true);
   };
+
   return (
     <View style={styles.inputField}>
       <Text style={styles.label}>{label}</Text>

@@ -7,7 +7,9 @@ export default function ChatScreen() {
   const Stack = createNativeStackNavigator();
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{
+      headerShown: false
+    }}>
       <Stack.Screen name="Chatrooms" component={ChatroomScreen} />
       <Stack.Screen name="Screen 3" component={Screen3} />
       <Stack.Screen name="Screen 4" component={Screen4} />
