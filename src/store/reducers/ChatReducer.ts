@@ -8,12 +8,12 @@ const initialState = {
   name: 'Laura',
 };
 
-export interface ActionInterface {
+export interface IAction {
   type: string;
   payload: any;
 }
 
-const chatReducer = (state = initialState, action: ActionInterface) => {
+const chatReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case ADD:
       return { ...state, counter: state.counter + 1 };

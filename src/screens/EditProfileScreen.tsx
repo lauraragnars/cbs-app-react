@@ -9,7 +9,8 @@ import { addUserInfo } from '../store/actions/UserActions';
 export default function EditProfileScreen({}) {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user);
-  //console.log(user['lastName'], 'useruseruser');
+  console.log(user);
+
   const [firstNameValid, setFirstNameValid] = useState(false);
   const [lastNameValid, setLastNameValid] = useState(false);
   const [firstName, setFirstName] = useState(user.firstName);
@@ -42,7 +43,7 @@ export default function EditProfileScreen({}) {
         />
       </View>
 
-      <Button buttonType='primary' title='Save info' onPress={() => dispatch(addUserInfo(firstName, lastName, user.email))} />
+      <Button buttonType='primary' title='Save info' onPress={() => dispatch(addUserInfo(firstName, lastName, user.email, user.userId))} />
     </>
   );
 }

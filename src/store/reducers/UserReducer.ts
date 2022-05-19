@@ -1,32 +1,34 @@
 import { LOGIN, SIGNUP, STORE_USER, LOGOUT, REQUEST_RESET_PASSWORD, ADD_USER_INFO } from '../actions/UserActions';
 
-export interface InitialUserState {
+export interface IInitialState {
+  userId: string;
   idToken: string | undefined;
   email: String | undefined;
   password: string | undefined;
-  // firstName: string;
-  // lastName: string;
+  firstName: string;
+  lastName: string;
 }
 
-export interface ActionState {
+export interface IAction {
   type: string;
   payload: any;
 }
 
-const initialState: InitialUserState = {
+const initialState: IInitialState = {
+  userId: '',
+  firstName: 'Test',
+  lastName: 'Test',
   idToken: undefined,
   email: '',
   password: '',
-  // firstName: 'Test',
-  // lastName: 'Test',
 };
 
-const userReducer = (state = initialState, action: ActionState) => {
+const userReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case SIGNUP:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email, userId: action.payload.userId };
     case LOGIN:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email, userId: action.payload.userId };
     case STORE_USER:
       return { ...state, idToken: action.payload.idToken, email: action.payload.email };
     case REQUEST_RESET_PASSWORD:
@@ -35,10 +37,12 @@ const userReducer = (state = initialState, action: ActionState) => {
       return { ...state, firstName: action.payload.firstName, lastName: action.payload.lastName, email: action.payload.email };
     case LOGOUT:
       return {
+        userId: '',
         idToken: undefined,
         email: '',
         password: '',
-        username: '',
+        firstName: '',
+        lastName: '',
       };
     default:
       return state;
