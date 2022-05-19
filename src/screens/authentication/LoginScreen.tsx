@@ -38,6 +38,8 @@ const LoginScreen = ({ navigation }: any) => {
     load();
   }, []);
 
+  
+
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
       <SafeAreaView style={general.generalContainer}>

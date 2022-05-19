@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import InputField from '../../components/InputField';
 import { forms } from '../../styles/Forms';
 import { general } from '../../styles/General';
@@ -8,6 +8,8 @@ import { Button } from '../../components/Button';
 import { useDispatch } from 'react-redux';
 import { requestResetPassword } from '../../store/actions/UserActions';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon, { IconType } from '../../components/Icon';
+import { variables } from '../../styles/Variables';
 
 const ResetPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -33,6 +35,7 @@ const ResetPasswordScreen = ({ navigation }: any) => {
   };
 
   return (
+    <ScrollView keyboardShouldPersistTaps='handled'>
     <SafeAreaView style={general.generalContainer}>
       <Text style={typography.h1}>Reset Password</Text>
       <Text style={typography.text}>If you do not know your current password, you can change it.</Text>
@@ -41,6 +44,7 @@ const ResetPasswordScreen = ({ navigation }: any) => {
       </View>
       <Button title='Reset' onPress={handleButtonPress} />
     </SafeAreaView>
+    </ScrollView>
   );
 };
 

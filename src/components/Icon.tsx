@@ -7,7 +7,8 @@ export enum IconType {
   HOME = 'home',
   SERVICES = 'services',
   MENU = 'menu',
-  CANCEL = 'cancel'
+  CANCEL = 'cancel',
+  BACKARROW = 'backarrow'
 }
 const IconConfig = {
   [IconType.CHAT]: {
@@ -56,6 +57,14 @@ const IconConfig = {
       <>
         <Circle cx='10' cy='10' r='10' fill='#B10024'></Circle>
         <Path fill='#fff' d='M5 6.5L8.5 10 5 13.5 6.5 15l3.5-3.5 3.5 3.5 1.5-1.5-3.5-3.5L15 6.5 13.5 5 10 8.5 6.5 5 5 6.5z'></Path>
+      </>
+    )
+  },
+  [IconType.BACKARROW]: {
+    viewBox: '8 12',
+    definition: (
+      <>
+         <Path d="M0 6l6-6 1.5 1.5L3 6l4.5 4.5L6 12 0 6z"></Path>
       </>
     )
   }
