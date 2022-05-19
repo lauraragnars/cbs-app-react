@@ -83,12 +83,12 @@ export const requestResetPassword = (email: string) => {
       })
     });
     const data = await response.json(); // json to javascript
-    console.log('reset password data', data);
+    console.log('reset password data bbblldlfdl', data.email);
     if (!response.ok) {
       //There was a problem.
       console.log('reset not ok');
     } else {
-      // await SecureStore.setItemAsync('email', data.email);
+      // await SecureStore.getItemAsync('email', data.email);
       console.log('an email was sent to your email');
       dispatch({ type: REQUEST_RESET_PASSWORD, payload: { email: data.email } });
     }

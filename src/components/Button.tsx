@@ -87,7 +87,7 @@ const linkStyles = StyleSheet.create({
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
-    color: variables.colors.blue300,
+    color: variables.colors.blue200,
     fontFamily: variables.fonts.openSans.bold,
     alignSelf: 'center'
   }

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import InputField from '../../components/InputField';
 import { forms } from '../../styles/Forms';
 import { general } from '../../styles/General';
 import { typography } from '../../styles/Typography';
 import { Button } from '../../components/Button';
-
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { requestResetPassword } from '../../store/actions/UserActions';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const ResetPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
@@ -16,7 +16,7 @@ const ResetPasswordScreen = ({ navigation }: any) => {
 
   const handleButtonPress = () => {
     if (isEmailValid) {
-      console.log('email is valid');
+      console.log('handle button press, email is valid');
       //Add check if email is in database
       dispatch(requestResetPassword(email));
       navigation.navigate('VerifyResetPassword');
@@ -33,16 +33,17 @@ const ResetPasswordScreen = ({ navigation }: any) => {
   };
 
   return (
-    <View style={general.padding}>
+    <SafeAreaView style={general.generalContainer}>
       <Text style={typography.h1}>Reset Password</Text>
       <Text style={typography.text}>If you do not know your current password, you can change it.</Text>
       <View style={forms.formContainer}>
         <InputField label='E-mail' textContentType='emailAddress' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
       </View>
-
       <Button title='Reset' onPress={handleButtonPress} />
-    </View>
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default ResetPasswordScreen;

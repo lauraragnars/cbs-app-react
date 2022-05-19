@@ -7,8 +7,8 @@ export const general = StyleSheet.create({
     fontFamily: variables.fonts.teko.medium,
     color: variables.colors.blue300
   },
-  padding: {
-    paddingTop: 50,
+  generalContainer: {
+    flex: 1,
     paddingLeft: 15,
     paddingRight: 15
   },
