@@ -5,19 +5,20 @@ export const LOGIN = 'LOGIN';
 export const STORE_USER = 'STORE_USER';
 export const LOGOUT = 'LOGOUT';
 export const REQUEST_RESET_PASSWORD = 'REQUEST_RESET_PASSWORD';
+export const ADD_USER_INFO = 'ADD_USER_INFO';
 
 export const login = (email: string, password: string) => {
   return async (dispatch: Function) => {
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
         password: password,
-        returnSecureToken: true
-      })
+        returnSecureToken: true,
+      }),
     });
 
     const data = await response.json(); // json to javascript
@@ -37,13 +38,13 @@ export const signup = (email: string, password: string) => {
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
         password: password,
-        returnSecureToken: true
-      })
+        returnSecureToken: true,
+      }),
     });
 
     const data = await response.json(); // json to javascript
@@ -75,12 +76,12 @@ export const requestResetPassword = (email: string) => {
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         email: email,
-        requestType: 'PASSWORD_RESET'
-      })
+        requestType: 'PASSWORD_RESET',
+      }),
     });
     const data = await response.json(); // json to javascript
     console.log('reset password data bbblldlfdl', data.email);
@@ -91,6 +92,31 @@ export const requestResetPassword = (email: string) => {
       // await SecureStore.getItemAsync('email', data.email);
       console.log('an email was sent to your email');
       dispatch({ type: REQUEST_RESET_PASSWORD, payload: { email: data.email } });
+    }
+  };
+};
+
+export const addUserInfo = (firstName: string, lastName: string, email: string) => {
+  return async (dispatch: any, getState: any) => {
+    const idToken = getState().user.idToken;
+    const response = await fetch('https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/user-info.json?auth=' + idToken, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName,
+        lastName,
+        email,
+      }),
+    });
+
+    const data = await response.json(); // json to javascript
+    console.log(data, 'user info response');
+    if (!response.ok) {
+      //There was a problem..
+    } else {
+      dispatch({ type: ADD_USER_INFO, payload: { firstName, lastName } });
     }
   };
 };
