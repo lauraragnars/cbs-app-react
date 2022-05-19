@@ -106,30 +106,6 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
   return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken;
 
-    // const getResponse = await fetch('https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/user-info.json?auth=' + idToken, {
-    //   method: 'GET',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: '',
-    // });
-
-    // const existingData = await getResponse.json(); // json to javascript
-
-    // if (!getResponse.ok) {
-    //   //There was a problem..
-    //   console.log('Something went wrong');
-    //   return;
-    // } else {
-    //   console.log(existingData, 'EXISTING DATA');
-
-    //   existingData.forEach((user:IUserInfo) => {
-    //     if (user.email = email) {
-
-    //     }
-    //   });
-    // }
-    console.log(userId, 'user IDDDDDDDD');
     const response = await fetch(`https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/user-info/${userId}.json?auth=${idToken}`, {
       method: 'POST',
       headers: {
@@ -143,7 +119,6 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
     });
 
     const data = await response.json(); // json to javascript
-    console.log(data, 'response data');
     if (!response.ok) {
       console.log('fail');
       //There was a problem..
