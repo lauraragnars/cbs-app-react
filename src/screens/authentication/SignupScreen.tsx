@@ -17,10 +17,8 @@ const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  //const [username, setUsername] = useState("");
   const [isPasswordValid, setIsPasswordValid] = useState(false);
   const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
-  //const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -29,10 +27,11 @@ const SignupScreen = ({ navigation }: any) => {
   async function load() {
     const emailFromSecureStore = await SecureStore.getItemAsync('email');
     const tokenFromSecureStore = await SecureStore.getItemAsync('idToken');
+    const userIdFromSecureStore = await SecureStore.getItemAsync('userId');
 
-    if (emailFromSecureStore && tokenFromSecureStore) {
+    if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
       console.log('success', emailFromSecureStore);
-      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore));
+      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore));
     } else {
       console.log('fail');
     }
@@ -66,13 +65,12 @@ const SignupScreen = ({ navigation }: any) => {
           <Image source={require('../../../assets/cbs-logo.png')} />
         </View>
         <Text style={typography.h1}>Signup to get access</Text>
-        {/* <InputField label="Username" textContentType="username" placeholder="Username" isValid={isUsernameValid} setIsValid={setIsUsernameValid} text={username} setText={setUsername} /> */}
         <View style={forms.formContainer}>
-          <InputField label='E-mail' textContentType='emailAddress' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
-          <InputField label='Password' textContentType='password' placeholder='Password' isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
+          <InputField label='E-mail' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+          <InputField label='Password' password={true} placeholder='Password' isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
           <InputField
             label='Repeat Password'
-            textContentType='password'
+            password={true}
             placeholder='Repeat Password'
             isValid={isRepeatPasswordValid}
             setIsValid={setIsRepeatPasswordValid}
@@ -83,7 +81,6 @@ const SignupScreen = ({ navigation }: any) => {
         </View>
 
         <Button title='Get access' onPress={handleButtonPress} />
-        {/* <Button title='Get access' onPress={() => dispatch(signup(email, password))} /> */}
         <Button buttonType='link' title='Already have an account? Login' onPress={() => navigation.navigate('Login')} />
       </SafeAreaView>
     </ScrollView>
@@ -92,19 +89,19 @@ const SignupScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   tiny: {
-    width: '5%'
+    width: '5%',
   },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300
-  }
+    color: variables.colors.blue300,
+  },
 });
 
 export default SignupScreen;

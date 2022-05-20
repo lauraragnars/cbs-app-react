@@ -4,7 +4,7 @@ import { variables } from '../styles/Variables';
 interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void;
   title: string;
-  buttonType?: 'primary' | 'secondary' | 'link';
+  buttonType?: 'primary' | 'secondary' | 'link' | 'disabled';
 }
 
 export const Button = ({ onPress, title, buttonType = 'primary' }: ButtonProps) => {
@@ -27,6 +27,12 @@ export const Button = ({ onPress, title, buttonType = 'primary' }: ButtonProps) 
           <Text style={linkStyles.buttonText}>{title}</Text>
         </TouchableOpacity>
       );
+    case 'disabled':
+      return (
+        <TouchableOpacity disabled={true} onPress={onPress} style={disabledStyles.buttonContainer}>
+          <Text style={disabledStyles.buttonText}>{title}</Text>
+        </TouchableOpacity>
+      );
   }
 };
 
@@ -42,14 +48,14 @@ const primaryStyles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5
-    }
+      height: 5,
+    },
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.white,
-    fontFamily: variables.fonts.openSans.bold
-  }
+    fontFamily: variables.fonts.openSans.bold,
+  },
 });
 
 const secondaryStyles = StyleSheet.create({
@@ -64,8 +70,8 @@ const secondaryStyles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5
-    }
+      height: 5,
+    },
   },
   buttonText: {
     fontSize: variables.fontSizes.large,
@@ -73,8 +79,8 @@ const secondaryStyles = StyleSheet.create({
     fontFamily: variables.fonts.teko.medium,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 });
 
 const linkStyles = StyleSheet.create({
@@ -83,12 +89,28 @@ const linkStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5
+    margin: 5,
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue200,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
+});
+
+const disabledStyles = StyleSheet.create({
+  buttonContainer: {
+    backgroundColor: variables.colors.gray,
+    borderRadius: 5,
+    paddingVertical: 15,
+    paddingHorizontal: 12,
+    margin: 5,
+  },
+  buttonText: {
+    fontSize: variables.fontSizes.normal,
+    color: variables.colors.blue100,
+    fontFamily: variables.fonts.openSans.bold,
+    alignSelf: 'center',
+  },
 });

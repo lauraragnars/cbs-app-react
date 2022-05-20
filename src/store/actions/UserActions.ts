@@ -7,12 +7,6 @@ export const LOGOUT = 'LOGOUT';
 export const REQUEST_RESET_PASSWORD = 'REQUEST_RESET_PASSWORD';
 export const ADD_USER_INFO = 'ADD_USER_INFO';
 
-interface IUserInfo {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
-
 export const login = (email: string, password: string) => {
   return async (dispatch: Function) => {
     const response = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDdsi0I77Ql6s-It6k6ozVsBnr_sJzjNy4', {
@@ -34,6 +28,7 @@ export const login = (email: string, password: string) => {
     } else {
       await SecureStore.setItemAsync('email', data.email);
       await SecureStore.setItemAsync('idToken', data.idToken);
+      await SecureStore.setItemAsync('userId', data.localId);
       dispatch({ type: LOGIN, payload: { email: data.email, idToken: data.idToken, userId: data.localId } });
     }
   };
@@ -59,6 +54,7 @@ export const signup = (email: string, password: string) => {
     } else {
       await SecureStore.setItemAsync('email', data.email);
       await SecureStore.setItemAsync('idToken', data.idToken);
+      await SecureStore.setItemAsync('userId', data.localId);
       dispatch({ type: SIGNUP, payload: { email: data.email, idToken: data.idToken, userId: data.localId } });
     }
   };
@@ -69,12 +65,13 @@ export const logout = () => {
     console.log('logout');
     await SecureStore.deleteItemAsync('email');
     await SecureStore.deleteItemAsync('idToken');
+    await SecureStore.deleteItemAsync('userId');
     dispatch({ type: LOGOUT });
   };
 };
 
-export const storeUser = (email: string, token: string) => {
-  return { type: STORE_USER, payload: { email: email, idToken: token } };
+export const storeUser = (email: string, token: string, userId: string) => {
+  return { type: STORE_USER, payload: { email: email, idToken: token, userId: userId } };
 };
 
 export const requestResetPassword = (email: string) => {
@@ -107,7 +104,7 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
     const idToken = getState().user.idToken;
 
     const response = await fetch(`https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/user-info/${userId}.json?auth=${idToken}`, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -119,10 +116,12 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
     });
 
     const data = await response.json(); // json to javascript
+
     if (!response.ok) {
-      console.log('fail');
-      //There was a problem..
+      console.log(data);
     } else {
+      await SecureStore.setItemAsync('firstName', firstName);
+      await SecureStore.setItemAsync('lastName', lastName);
       dispatch({ type: ADD_USER_INFO, payload: { firstName, lastName, email } });
     }
   };

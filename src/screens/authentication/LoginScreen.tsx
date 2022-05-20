@@ -17,7 +17,6 @@ const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isPasswordValid, setIsPasswordValid] = useState(false);
-  //const [isUsernameValid, setIsUsernameValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const dispatch = useDispatch();
   const userTest = useSelector((state: RootState) => state.user.email);
@@ -25,10 +24,11 @@ const LoginScreen = ({ navigation }: any) => {
   async function load() {
     const emailFromSecureStore = await SecureStore.getItemAsync('email');
     const tokenFromSecureStore = await SecureStore.getItemAsync('idToken');
+    const userIdFromSecureStore = await SecureStore.getItemAsync('userId');
 
-    if (emailFromSecureStore && tokenFromSecureStore) {
+    if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
       console.log('success', emailFromSecureStore);
-      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore));
+      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore));
     } else {
       console.log('fail');
     }
@@ -46,8 +46,8 @@ const LoginScreen = ({ navigation }: any) => {
         </View>
         <Text style={typography.h1}>Log in</Text>
         <View style={forms.formContainer}>
-          <InputField label='E-mail' textContentType='emailAddress' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
-          <InputField label='Password' textContentType='password' placeholder='Password' isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
+          <InputField label='E-mail' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+          <InputField label='Password' password={true} placeholder='Password' isValid={isPasswordValid} setIsValid={setIsPasswordValid} text={password} setText={setPassword} />
         </View>
         <Button buttonType='link' title='Forgot password?' onPress={() => navigation.navigate('ResetPassword')} />
         <Button title='Login' onPress={() => dispatch(login(email, password))} />
@@ -59,19 +59,19 @@ const LoginScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   whiteBackground: {
-    backgroundColor: variables.colors.white
+    backgroundColor: variables.colors.white,
   },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300
-  }
+    color: variables.colors.blue300,
+  },
 });
 
 export default LoginScreen;

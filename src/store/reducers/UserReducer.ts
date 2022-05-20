@@ -30,7 +30,7 @@ const userReducer = (state = initialState, action: IAction) => {
     case LOGIN:
       return { ...state, idToken: action.payload.idToken, email: action.payload.email, userId: action.payload.userId };
     case STORE_USER:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return { ...state, idToken: action.payload.idToken, email: action.payload.email, userId: action.payload.userId };
     case REQUEST_RESET_PASSWORD:
       return { ...state, email: action.payload.email };
     case ADD_USER_INFO:
