@@ -1,41 +1,50 @@
-import { useState } from "react";
-import { Text } from "react-native";
-import { useSelector } from "react-redux";
-import { RootState } from "../../App";
-import InputField from "../components/InputField";
+import { useState } from 'react'
+import { Text, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../App'
+import { Button } from '../components/Button'
+import InputField from '../components/InputField'
+import { addUserInfo } from '../store/actions/UserActions'
+import { general } from '../styles/General'
+import { typography } from '../styles/Typography'
 
-export default function EditProfileScreen({}) {
-  const [inputValid1, setInputValid1] = useState(false);
-  const [inputValid2, setInputValid2] = useState(false);
-
-  const user = useSelector((state: RootState) => state.user);
-  const [text, setText] = useState(user.username);
-  const [text2, setText2] = useState(user.username);
-  const isFormValid = inputValid1 && inputValid2
+export default function EditProfileScreen ({}) {
+  const dispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.user)
+  const [firstNameValid, setFirstNameValid] = useState(false)
+  const [lastNameValid, setLastNameValid] = useState(false)
+  const [firstName, setFirstName] = useState(user.firstName)
+  const [lastName, setLastName] = useState(user.lastName)
+  const isFormValid = firstNameValid && lastNameValid
 
   return (
     <>
-      <Text>Is form valid? {isFormValid ? "Yes" : "No"}</Text>
-      <Text>Edit Profile</Text>
-      <InputField
-        isValid={inputValid1}
-        setIsValid={setInputValid1}
-        placeholder="Input field"
-        errorMessage="Invalid name"
-        label="Input field"
-        text={text}
-        setText={setText}
-      />
+      <View style={general.generalContainer}>
+        <Text style={typography.h1}>Edit Profile</Text>
+        <View>
+          <InputField
+            isValid={firstNameValid}
+            setIsValid={setFirstNameValid}
+            placeholder='First Name'
+            errorMessage='Please enter a name'
+            label='First name '
+            text={firstName}
+            setText={setFirstName}
+          />
 
-      <InputField
-        isValid={inputValid2}
-        setIsValid={setInputValid2}
-        placeholder="Input field 2"
-        errorMessage="Invalid name"
-        label="Input field"
-        text={text2}
-        setText={setText2}
-      />
+          <InputField
+            isValid={lastNameValid}
+            setIsValid={setLastNameValid}
+            placeholder='Last name'
+            errorMessage='Please enter a name'
+            label='Last name'
+            text={lastName}
+            setText={setLastName}
+          />
+        </View>
+
+        <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={() => dispatch(addUserInfo(firstName, lastName, user.email, user.userId))} />
+      </View>
     </>
-  );
+  )
 }

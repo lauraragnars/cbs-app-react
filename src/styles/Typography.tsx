@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { variables } from './Variables';
+import { StyleSheet } from 'react-native'
+import { variables } from './Variables'
 
 export const typography = StyleSheet.create({
   h1: {
@@ -14,4 +14,4 @@ export const typography = StyleSheet.create({
     fontFamily: variables.fonts.openSans.regular,
     color: variables.colors.blue300
   }
-});
+})

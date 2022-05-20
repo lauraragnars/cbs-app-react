@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { variables } from './Variables';
+import { StyleSheet } from 'react-native'
+import { variables } from './Variables'
 
 export const general = StyleSheet.create({
   background: {
@@ -21,4 +21,4 @@ export const general = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center'
   }
-});
+})

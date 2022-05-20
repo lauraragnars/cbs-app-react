@@ -1,18 +1,18 @@
-import { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { Todo } from '../../Todo';
+import React, { useState } from 'react'
+import { StatusBar } from 'expo-status-bar'
+import { Button, FlatList, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Todo } from '../../Todo'
 
-export default function TodoScreen({ navigation }: any) {
-  const [text, setText] = useState('');
-  const [todos, setTodos] = useState([]);
+export default function TodoScreen ({ navigation }: any) {
+  const [text, setText] = useState('')
+  const [todos, setTodos] = useState([])
 
   const handleAddTodo = () => {
-    const todo = new Todo(Math.random().toString(), text);
+    const todo = new Todo(Math.random().toString(), text)
     // sama og þetta
-    //const todo1 = { id: Math.random().toString(), text: text }
-    setTodos((oldTodos): any => [...oldTodos, todo]);
-  };
+    // const todo1 = { id: Math.random().toString(), text: text }
+    setTodos((oldTodos): any => [...oldTodos, todo])
+  }
 
   const renderItem = ({ item }: any) => (
     <View style={styles.item}>
@@ -21,7 +21,7 @@ export default function TodoScreen({ navigation }: any) {
         <Text>Delete item</Text>
       </TouchableOpacity>
     </View>
-  );
+  )
 
   return (
     <View style={styles.container}>
@@ -38,7 +38,7 @@ export default function TodoScreen({ navigation }: any) {
       </SafeAreaView>
       <StatusBar style='auto' />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -46,14 +46,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'white',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   textInput: {
     borderColor: '#000',
     borderStyle: 'solid',
-    borderWidth: 2,
+    borderWidth: 2
   },
   item: {
-    marginBottom: 10,
-  },
-});
+    marginBottom: 10
+  }
+})

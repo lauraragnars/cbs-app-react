@@ -1,44 +1,67 @@
-import { LOGIN, SIGNUP, STORE_USER, LOGOUT, REQUEST_RESET_PASSWORD } from '../actions/UserActions';
+import { LOGIN, SIGNUP, STORE_USER, LOGOUT, REQUEST_RESET_PASSWORD, ADD_USER_INFO, STORE_USER_INFO, REFRESH_USER } from '../actions/UserActions'
 
-export interface UserState {
-  idToken: string | undefined;
-  email: String | undefined;
-  password: string | undefined;
-  username: string | undefined;
+export interface IInitialState {
+  userId: string
+  idToken: string | undefined
+  refreshToken: string | undefined
+  email: String | undefined
+  password: string | undefined
+  firstName: string | undefined
+  lastName: string | undefined
 }
 
-export interface ActionState {
-  type: string;
-  payload: any;
+export interface IAction {
+  type: string
+  payload: any
 }
 
-const initialState: UserState = {
-  idToken: undefined,
+const initialState: IInitialState = {
+  userId: '',
+  firstName: 'User',
+  lastName: '',
+  idToken: '',
+  refreshToken: '',
   email: '',
   password: '',
-  username: 'Test'
-};
+}
 
-const userReducer = (state = initialState, action: ActionState) => {
+const userReducer = (state = initialState, action: IAction) => {
   switch (action.type) {
     case SIGNUP:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return { ...state, idToken: action.payload.idToken, refreshToken: action.payload.refreshToken, email: action.payload.email, userId: action.payload.userId }
     case LOGIN:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return {
+        ...state,
+        idToken: action.payload.idToken,
+        refreshToken: action.payload.refreshToken,
+        email: action.payload.email,
+        userId: action.payload.userId,
+        firstName: action.payload.firstName,
+        lastName: action.payload.lastName,
+      }
     case STORE_USER:
-      return { ...state, idToken: action.payload.idToken, email: action.payload.email };
+      return { ...state, email: action.payload.email, userId: action.payload.userId }
+    case STORE_USER_INFO:
+      return { ...state, firstName: action.payload.firstName, lastName: action.payload.lastName }
+    case REFRESH_USER:
+      return { ...state, idToken: action.payload.idToken, refreshToken: action.payload.refreshToken }
     case REQUEST_RESET_PASSWORD:
-      return { ...state, email: action.payload.email };
+      return { ...state, email: action.payload.email }
+    case ADD_USER_INFO:
+      return { ...state, firstName: action.payload.firstName, lastName: action.payload.lastName, email: action.payload.email }
     case LOGOUT:
       return {
-        idToken: undefined,
+        userId: '',
+        idToken: '',
+        refreshToken: '',
         email: '',
         password: '',
-        username: ''
-      };
+        firstName: '',
+        lastName: '',
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default userReducer;
+export default userReducer
