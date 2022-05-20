@@ -15,6 +15,7 @@ import Icon, { IconType } from './Icon';
 import { variables } from '../styles/Variables';
 import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
+import DiscoverStack from '../screens/navigation/DiscoverStack';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -56,7 +57,7 @@ function MainNavigation() {
       />
       <Tab.Screen
         name='Discover'
-        component={DiscoverScreen}
+        component={DiscoverStack}
         options={{
           tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />
         }}
@@ -83,29 +84,45 @@ function MainNavigation() {
 function Authentication() {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Login' component={LoginScreen} options={{
-        headerShown: false
-      }}  />
-      <Stack.Screen name='Signup' component={SignupScreen} options={{
-        headerShown: false
-      }}/>
-      <Stack.Screen name='ResetPassword' component={ResetPasswordScreen} options={{
-      headerStyle: {
-        backgroundColor: 'white',
-      },
-      headerTintColor: variables.colors.blue200,
-      headerBackTitle: 'BACK',
-      headerBackTitleStyle: {
-        fontFamily: variables.fonts.teko.medium,
-        fontSize: 20,
-      },        
-      headerTitleStyle: {
-        color: 'white',
-        
-      } }} />
-      <Stack.Screen name='VerifyResetPassword' component={VerifyResetPasswordScreen} options={{
-        headerShown: false
-      }} />
+      <Stack.Screen
+        name='Login'
+        component={LoginScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name='Signup'
+        component={SignupScreen}
+        options={{
+          headerShown: false
+        }}
+      />
+      <Stack.Screen
+        name='ResetPassword'
+        component={ResetPasswordScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: 'white'
+          },
+          headerTintColor: variables.colors.blue200,
+          headerBackTitle: 'BACK',
+          headerBackTitleStyle: {
+            fontFamily: variables.fonts.teko.medium,
+            fontSize: 20
+          },
+          headerTitleStyle: {
+            color: 'white'
+          }
+        }}
+      />
+      <Stack.Screen
+        name='VerifyResetPassword'
+        component={VerifyResetPasswordScreen}
+        options={{
+          headerShown: false
+        }}
+      />
     </Stack.Navigator>
   );
 }

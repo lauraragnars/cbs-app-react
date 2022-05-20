@@ -1,8 +1,19 @@
-import { Text } from "react-native";
+import React from 'react';
+import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import DiscoverCard from '../../components/DiscoverCard';
 
-export default function DiscoverScreen() {
+const DiscoverScreen = ({ navigation }: any) => {
   return (
     <>
+      <TouchableOpacity onPress={() => navigation.navigate('Events')}>
+        <DiscoverCard title='All Events' cardType='purple' />
+      </TouchableOpacity>
+      <DiscoverCard title='All Student Organisations' cardType='blue' />
+      <DiscoverCard title='All Posts' cardType='green' />
     </>
   );
-}
+};
+
+const styles = StyleSheet.create({});
+
+export default DiscoverScreen;

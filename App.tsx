@@ -10,10 +10,12 @@ import { Teko_300Light, Teko_400Regular, Teko_500Medium, Teko_600SemiBold, Teko_
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 import { variables } from './src/styles/Variables';
+import eventReducer from './src/store/reducers/EventReducer';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
+  event: eventReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -31,7 +33,7 @@ export default function App() {
     Teko_400Regular,
     Teko_500Medium,
     Teko_600SemiBold,
-    Teko_700Bold,
+    Teko_700Bold
   });
 
   if (!fontsLoaded) {
@@ -42,8 +44,8 @@ export default function App() {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      background: variables.colors.white,
-    },
+      background: variables.colors.white
+    }
   };
 
   return (
