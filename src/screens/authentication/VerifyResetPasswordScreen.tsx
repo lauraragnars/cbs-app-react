@@ -1,10 +1,10 @@
-import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-import { general } from '../../styles/General';
-import { typography } from '../../styles/Typography';
-import { Button } from '../../components/Button';
-import { variables } from '../../styles/Variables';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React from 'react'
+import { View, Text, Image, StyleSheet } from 'react-native'
+import { general } from '../../styles/General'
+import { typography } from '../../styles/Typography'
+import { Button } from '../../components/Button'
+import { variables } from '../../styles/Variables'
+import { SafeAreaView } from 'react-native-safe-area-context'
 
 const VerifyResetPasswordScreen = ({ navigation }: any) => {
   return (
@@ -18,8 +18,8 @@ const VerifyResetPasswordScreen = ({ navigation }: any) => {
         </View>
       </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   fullWidth: {
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 40
   }
-});
+})
 
-export default VerifyResetPasswordScreen;
+export default VerifyResetPasswordScreen

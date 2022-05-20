@@ -1,5 +1,5 @@
-import { StyleSheet, TouchableOpacity, Text, GestureResponderEvent } from 'react-native';
-import { variables } from '../styles/Variables';
+import { StyleSheet, TouchableOpacity, Text, GestureResponderEvent } from 'react-native'
+import { variables } from '../styles/Variables'
 
 interface ButtonProps {
   onPress: (event: GestureResponderEvent) => void;
@@ -14,27 +14,27 @@ export const Button = ({ onPress, title, buttonType = 'primary' }: ButtonProps) 
         <TouchableOpacity onPress={onPress} style={primaryStyles.buttonContainer}>
           <Text style={primaryStyles.buttonText}>{title}</Text>
         </TouchableOpacity>
-      );
+      )
     case 'secondary':
       return (
         <TouchableOpacity onPress={onPress} style={secondaryStyles.buttonContainer}>
           <Text style={secondaryStyles.buttonText}>{title}</Text>
         </TouchableOpacity>
-      );
+      )
     case 'link':
       return (
         <TouchableOpacity onPress={onPress} style={linkStyles.buttonContainer}>
           <Text style={linkStyles.buttonText}>{title}</Text>
         </TouchableOpacity>
-      );
+      )
     case 'disabled':
       return (
         <TouchableOpacity disabled={true} onPress={onPress} style={disabledStyles.buttonContainer}>
           <Text style={disabledStyles.buttonText}>{title}</Text>
         </TouchableOpacity>
-      );
+      )
   }
-};
+}
 
 const primaryStyles = StyleSheet.create({
   buttonContainer: {
@@ -48,15 +48,15 @@ const primaryStyles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5,
-    },
+      height: 5
+    }
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.white,
-    fontFamily: variables.fonts.openSans.bold,
-  },
-});
+    fontFamily: variables.fonts.openSans.bold
+  }
+})
 
 const secondaryStyles = StyleSheet.create({
   buttonContainer: {
@@ -70,8 +70,8 @@ const secondaryStyles = StyleSheet.create({
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5,
-    },
+      height: 5
+    }
   },
   buttonText: {
     fontSize: variables.fontSizes.large,
@@ -79,9 +79,9 @@ const secondaryStyles = StyleSheet.create({
     fontFamily: variables.fonts.teko.medium,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-});
+    alignSelf: 'center'
+  }
+})
 
 const linkStyles = StyleSheet.create({
   buttonContainer: {
@@ -89,15 +89,15 @@ const linkStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5,
+    margin: 5
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue200,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center',
-  },
-});
+    alignSelf: 'center'
+  }
+})
 
 const disabledStyles = StyleSheet.create({
   buttonContainer: {
@@ -105,12 +105,12 @@ const disabledStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5,
+    margin: 5
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue100,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center',
-  },
-});
+    alignSelf: 'center'
+  }
+})

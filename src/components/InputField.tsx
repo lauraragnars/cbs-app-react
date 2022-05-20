@@ -1,6 +1,6 @@
-import { Text, TextInput, View, StyleSheet } from 'react-native';
-import { useEffect, useState } from 'react';
-import { variables } from '../styles/Variables';
+import { Text, TextInput, View, StyleSheet } from 'react-native'
+import { useEffect, useState } from 'react'
+import { variables } from '../styles/Variables'
 
 interface InputFieldProps {
   label: string;
@@ -14,30 +14,30 @@ interface InputFieldProps {
   disabled?: boolean;
 }
 
-export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, password = false, disabled = false }: InputFieldProps) {
-  const [entered, setEntered] = useState(false);
+export default function InputField ({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, password = false, disabled = false }: InputFieldProps) {
+  const [entered, setEntered] = useState(false)
 
   useEffect(() => {
     if (text === '') {
-      setIsValid(false);
+      setIsValid(false)
     } else {
-      setIsValid(true);
+      setIsValid(true)
     }
-  }, []);
+  }, [])
 
   const handleChangeText = (text: string) => {
-    setText(text);
-    setEntered(true);
+    setText(text)
+    setEntered(true)
     if (text === '') {
-      setIsValid(false);
+      setIsValid(false)
     } else {
-      setIsValid(true);
+      setIsValid(true)
     }
-  };
+  }
 
   const handleOnBlur = (b: any) => {
-    setEntered(true);
-  };
+    setEntered(true)
+  }
 
   return (
     <View style={styles.inputField}>
@@ -45,7 +45,7 @@ export default function InputField({ label, errorMessage, placeholder, isValid, 
       <TextInput secureTextEntry={password} style={styles.inputText} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
       {!isValid && entered && <Text>{errorMessage}</Text>}
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -53,18 +53,18 @@ const styles = StyleSheet.create({
     fontFamily: variables.fonts.openSans.bold,
     fontSize: variables.fontSizes.xsmall,
     color: variables.colors.blue300,
-    textTransform: 'uppercase',
+    textTransform: 'uppercase'
   },
   inputText: {
     fontFamily: variables.fonts.openSans.regular,
     fontSize: variables.fontSizes.normal,
-    color: variables.colors.blue300,
+    color: variables.colors.blue300
   },
   inputField: {
     borderColor: variables.colors.gray,
     padding: 10,
     borderStyle: 'solid',
     width: '100%',
-    borderBottomWidth: 1,
-  },
-});
+    borderBottomWidth: 1
+  }
+})

@@ -1,5 +1,5 @@
-import React from 'react';
-import Svg, { Path, Circle } from 'react-native-svg';
+import React from 'react'
+import Svg, { Path, Circle } from 'react-native-svg'
 
 export enum IconType {
   CHAT = 'chat',
@@ -68,14 +68,14 @@ const IconConfig = {
       </>
     )
   }
-};
+}
 
-export default function Icon({ type, fill = 'black' }: { type: IconType; fill?: string }) {
-  const config = IconConfig[type];
+export default function Icon ({ type, fill = 'black' }: { type: IconType; fill?: string }) {
+  const config = IconConfig[type]
 
   return (
     <Svg fill={fill} viewBox={'0 0 ' + config.viewBox}>
       {config.definition}
     </Svg>
-  );
+  )
 }

@@ -1,63 +1,93 @@
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import * as SecureStore from 'expo-secure-store'
 
 // Screens
-import ChatScreen from '../screens/navigation/ChatScreen';
-import DiscoverScreen from '../screens/navigation/DiscoverScreen';
-import SignupScreen from '../screens/authentication/SignupScreen';
-import LoginScreen from '../screens/authentication/LoginScreen';
-import HomeScreen from '../screens/navigation/HomeScreen';
-import { useSelector } from 'react-redux';
-import ProfileScreen from '../screens/ProfileScreen';
-import EditProfileScreen from '../screens/EditProfileScreen';
-import { RootState } from '../../App';
-import Icon, { IconType } from './Icon';
-import { variables } from '../styles/Variables';
-import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
-import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
+import ChatScreen from '../screens/navigation/ChatScreen'
+import DiscoverScreen from '../screens/navigation/DiscoverScreen'
+import SignupScreen from '../screens/authentication/SignupScreen'
+import LoginScreen from '../screens/authentication/LoginScreen'
+import HomeScreen from '../screens/navigation/HomeScreen'
+import { useDispatch, useSelector } from 'react-redux'
+import ProfileScreen from '../screens/ProfileScreen'
+import EditProfileScreen from '../screens/EditProfileScreen'
+import { RootState } from '../../App'
+import Icon, { IconType } from './Icon'
+import { variables } from '../styles/Variables'
+import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen'
+import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen'
+import { useEffect } from 'react'
+import { storeUser, storeUserInfo } from '../store/actions/UserActions'
 
-const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator()
+const Stack = createNativeStackNavigator()
 
-export default function Navigation() {
-  const user = useSelector((state: RootState) => state.user);
+export default function Navigation () {
+  const user = useSelector((state: RootState) => state.user)
+  const dispatch = useDispatch()
 
-  return <>{user.idToken ? <MainNavigation /> : <Authentication />}</>;
+  async function load () {
+    const emailFromSecureStore = await SecureStore.getItemAsync('email')
+    const tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
+    const userIdFromSecureStore = await SecureStore.getItemAsync('userId')
+    const firstNameFromSecureStore = await SecureStore.getItemAsync('firstName')
+    const lastNameFromSecureStore = await SecureStore.getItemAsync('lastName')
+
+    if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
+      console.log('success', emailFromSecureStore)
+      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore))
+    } else {
+      console.log('fail')
+    }
+
+    if (firstNameFromSecureStore && lastNameFromSecureStore) {
+      console.log('User info found')
+      dispatch(storeUserInfo(firstNameFromSecureStore, lastNameFromSecureStore))
+    } else {
+      console.log('No user info found')
+    }
+  }
+
+  useEffect(() => {
+    load()
+  }, [])
+
+  return <>{user.idToken ? <MainNavigation /> : <Authentication />}</>
 }
 
-function MainNavigation() {
+function MainNavigation () {
   return (
     <Tab.Navigator
       screenOptions={{
         tabBarIconStyle: {
-          marginTop: 10,
+          marginTop: 10
         },
         tabBarLabelStyle: {
           fontFamily: 'Teko_500Medium',
           fontSize: 16,
-          marginBottom: -5,
+          marginBottom: -5
         },
         headerTitleStyle: {
           fontFamily: 'Teko_500Medium',
           fontSize: variables.fontSizes.large,
           color: variables.colors.blue200,
-          textTransform: 'uppercase',
+          textTransform: 'uppercase'
         },
-        tabBarActiveTintColor: variables.colors.blue200,
+        tabBarActiveTintColor: variables.colors.blue200
       }}
     >
       <Tab.Screen
         name='Home'
         component={HomeScreen}
         options={{
-          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.HOME} />,
+          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.HOME} />
         }}
       />
       <Tab.Screen
         name='Discover'
         component={DiscoverScreen}
         options={{
-          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />,
+          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.SEARCH} />
         }}
       />
       <Tab.Screen
@@ -65,35 +95,35 @@ function MainNavigation() {
         component={ChatScreen}
         options={{
           tabBarBadge: 3,
-          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.CHAT} />,
+          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.CHAT} />
         }}
       />
       <Tab.Screen
         name='Menu'
         component={MenuScreenNavigation}
         options={{
-          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.MENU} />,
+          tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.MENU} />
         }}
       />
     </Tab.Navigator>
-  );
+  )
 }
 
-function Authentication() {
+function Authentication () {
   return (
     <Stack.Navigator>
       <Stack.Screen
         name='Login'
         component={LoginScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
       <Stack.Screen
         name='Signup'
         component={SignupScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
       <Stack.Screen
@@ -101,39 +131,39 @@ function Authentication() {
         component={ResetPasswordScreen}
         options={{
           headerStyle: {
-            backgroundColor: 'white',
+            backgroundColor: 'white'
           },
           headerTintColor: variables.colors.blue200,
           headerBackTitle: 'BACK',
           headerBackTitleStyle: {
             fontFamily: variables.fonts.teko.medium,
-            fontSize: 20,
+            fontSize: 20
           },
           headerTitleStyle: {
-            color: 'white',
-          },
+            color: 'white'
+          }
         }}
       />
       <Stack.Screen
         name='VerifyResetPassword'
         component={VerifyResetPasswordScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
     </Stack.Navigator>
-  );
+  )
 }
 
-function MenuScreenNavigation() {
+function MenuScreenNavigation () {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: false
       }}
     >
       <Stack.Screen name='Profile' component={ProfileScreen} />
       <Stack.Screen name='Edit profile' component={EditProfileScreen} />
     </Stack.Navigator>
-  );
+  )
 }

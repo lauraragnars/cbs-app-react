@@ -1,23 +1,21 @@
-import { useState } from 'react';
-import { Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../App';
-import { Button } from '../components/Button';
-import InputField from '../components/InputField';
-import { addUserInfo } from '../store/actions/UserActions';
-import { general } from '../styles/General';
-import { typography } from '../styles/Typography';
+import { useState } from 'react'
+import { Text, View } from 'react-native'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../App'
+import { Button } from '../components/Button'
+import InputField from '../components/InputField'
+import { addUserInfo } from '../store/actions/UserActions'
+import { general } from '../styles/General'
+import { typography } from '../styles/Typography'
 
-export default function EditProfileScreen({}) {
-  const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
-  console.log(user);
-
-  const [firstNameValid, setFirstNameValid] = useState(false);
-  const [lastNameValid, setLastNameValid] = useState(false);
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-  const isFormValid = firstNameValid && lastNameValid;
+export default function EditProfileScreen ({}) {
+  const dispatch = useDispatch()
+  const user = useSelector((state: RootState) => state.user)
+  const [firstNameValid, setFirstNameValid] = useState(false)
+  const [lastNameValid, setLastNameValid] = useState(false)
+  const [firstName, setFirstName] = useState(user.firstName)
+  const [lastName, setLastName] = useState(user.lastName)
+  const isFormValid = firstNameValid && lastNameValid
 
   return (
     <>
@@ -48,5 +46,5 @@ export default function EditProfileScreen({}) {
         <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={() => dispatch(addUserInfo(firstName, lastName, user.email, user.userId))} />
       </View>
     </>
-  );
+  )
 }

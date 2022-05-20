@@ -1,8 +1,8 @@
-import { Text } from "react-native";
+import { Text } from 'react-native'
 
-export default function DiscoverScreen() {
+export default function DiscoverScreen () {
   return (
     <>
     </>
-  );
+  )
 }

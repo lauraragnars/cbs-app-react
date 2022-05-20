@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import InputField from '../../components/InputField';
-import { forms } from '../../styles/Forms';
-import { general } from '../../styles/General';
-import { typography } from '../../styles/Typography';
-import { Button } from '../../components/Button';
-import { useDispatch } from 'react-redux';
-import { requestResetPassword } from '../../store/actions/UserActions';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import Icon, { IconType } from '../../components/Icon';
-import { variables } from '../../styles/Variables';
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import InputField from '../../components/InputField'
+import { forms } from '../../styles/Forms'
+import { general } from '../../styles/General'
+import { typography } from '../../styles/Typography'
+import { Button } from '../../components/Button'
+import { useDispatch } from 'react-redux'
+import { requestResetPassword } from '../../store/actions/UserActions'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Icon, { IconType } from '../../components/Icon'
+import { variables } from '../../styles/Variables'
 
 const ResetPasswordScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('');
-  const [isEmailValid, setIsEmailValid] = useState(false);
-  const dispatch = useDispatch();
+  const [email, setEmail] = useState('')
+  const [isEmailValid, setIsEmailValid] = useState(false)
+  const dispatch = useDispatch()
 
   const handleButtonPress = () => {
     if (isEmailValid) {
-      console.log('handle button press, email is valid');
-      //Add check if email is in database
-      dispatch(requestResetPassword(email));
-      navigation.navigate('VerifyResetPassword');
+      console.log('handle button press, email is valid')
+      // Add check if email is in database
+      dispatch(requestResetPassword(email))
+      navigation.navigate('VerifyResetPassword')
     } else {
-      console.log('reset did not go through');
+      console.log('reset did not go through')
       // if (!isEmailValid) {
       //   setErrorMessage('E-mail is required');
       // } else if (password !== repeatPassword) {
@@ -32,7 +32,7 @@ const ResetPasswordScreen = ({ navigation }: any) => {
       //   setErrorMessage('');
       // }
     }
-  };
+  }
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
@@ -45,9 +45,9 @@ const ResetPasswordScreen = ({ navigation }: any) => {
       <Button title='Reset' onPress={handleButtonPress} />
     </SafeAreaView>
     </ScrollView>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({})
 
-export default ResetPasswordScreen;
+export default ResetPasswordScreen

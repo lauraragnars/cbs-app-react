@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { variables } from './Variables';
+import { StyleSheet } from 'react-native'
+import { variables } from './Variables'
 
 export const forms = StyleSheet.create({
   formContainer: {
@@ -11,4 +11,4 @@ export const forms = StyleSheet.create({
     borderColor: variables.colors.gray,
     borderRadius: 5
   }
-});
+})
