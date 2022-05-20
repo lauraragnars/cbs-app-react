@@ -10,7 +10,6 @@ import { forms } from '../../styles/Forms'
 import { typography } from '../../styles/Typography'
 import { general } from '../../styles/General'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Icon from '../../components/Icon'
 
 const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
@@ -23,18 +22,22 @@ const SignupScreen = ({ navigation }: any) => {
 
   const dispatch = useDispatch()
 
-  async function load () {
-    const emailFromSecureStore = await SecureStore.getItemAsync('email')
-    const tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
-    const userIdFromSecureStore = await SecureStore.getItemAsync('userId')
+  // async function load () {
+  //   const emailFromSecureStore = await SecureStore.getItemAsync('email')
+  //   const tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
+  //   const userIdFromSecureStore = await SecureStore.getItemAsync('userId')
 
-    if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
-      console.log('success', emailFromSecureStore)
-      dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore))
-    } else {
-      console.log('fail')
-    }
-  }
+  //   if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
+  //     console.log('success', emailFromSecureStore)
+  //     dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore))
+  //   } else {
+  //     console.log('fail')
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   load()
+  // }, [])
 
   const handleButtonPress = () => {
     const isFormValid = isEmailValid && isPasswordValid
@@ -52,10 +55,6 @@ const SignupScreen = ({ navigation }: any) => {
       }
     }
   }
-
-  useEffect(() => {
-    load()
-  }, [])
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
@@ -88,19 +87,19 @@ const SignupScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   tiny: {
-    width: '5%'
+    width: '5%',
   },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300
-  }
+    color: variables.colors.blue300,
+  },
 })
 
 export default SignupScreen
