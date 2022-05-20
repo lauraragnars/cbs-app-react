@@ -41,7 +41,7 @@ export const login = (email: string, password: string) => {
         console.log('unable to fetch user data')
       } else {
         await SecureStore.setItemAsync('firstName', userInfoData.firstName)
-        await SecureStore.setItemAsync('lastName', userInfoData.firstName)
+        await SecureStore.setItemAsync('lastName', userInfoData.lastName)
       }
 
       await SecureStore.setItemAsync('email', data.email)
@@ -184,6 +184,7 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
 
     if (!response.ok) {
       console.log(data, 'add user info')
+      const errorMessage = data.message
     } else {
       await SecureStore.setItemAsync('firstName', firstName)
       await SecureStore.setItemAsync('lastName', lastName)

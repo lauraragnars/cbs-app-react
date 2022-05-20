@@ -8,7 +8,7 @@ import { addUserInfo } from '../store/actions/UserActions'
 import { general } from '../styles/General'
 import { typography } from '../styles/Typography'
 
-export default function EditProfileScreen ({}) {
+export default function EditProfileScreen({ navigation }: any) {
   const dispatch = useDispatch()
   const user = useSelector((state: RootState) => state.user)
   const [firstNameValid, setFirstNameValid] = useState(false)
@@ -16,6 +16,17 @@ export default function EditProfileScreen ({}) {
   const [firstName, setFirstName] = useState(user.firstName)
   const [lastName, setLastName] = useState(user.lastName)
   const isFormValid = firstNameValid && lastNameValid
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const handleSafeInfo = () => {
+    try {
+      dispatch(addUserInfo(firstName, lastName, user.email, user.userId))
+    } catch {
+      setErrorMessage('Somethin went wrong')
+    } finally {
+      navigation.navigate('Profile')
+    }
+  }
 
   return (
     <>
@@ -43,7 +54,7 @@ export default function EditProfileScreen ({}) {
           />
         </View>
 
-        <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={() => dispatch(addUserInfo(firstName, lastName, user.email, user.userId))} />
+        <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={handleSafeInfo} />
       </View>
     </>
   )

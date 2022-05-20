@@ -3,13 +3,13 @@ import { Text, FlatList, TouchableOpacity, View, StyleSheet, Image } from 'react
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../App'
 import InputField from '../components/InputField'
-import { Chatroom } from '../entities/Chatroom'
+import { Chatmessage, Chatroom } from '../entities/Chatroom'
 import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions'
 import { Button } from '../components/Button'
 import { typography } from '../styles/Typography'
 import { variables } from '../styles/Variables'
 
-export default function ChatroomScreen ({ navigation }: any) {
+export default function ChatroomScreen({ navigation }: any) {
   const dispatch = useDispatch()
   const chatrooms = useSelector((state: RootState) => state.chat.chatrooms)
   const [text, setText] = useState('')
@@ -22,17 +22,29 @@ export default function ChatroomScreen ({ navigation }: any) {
     dispatch(fetchChatrooms())
   }, [])
 
-  const renderItem = ({ item }: any) => (
+  interface IChatroomItem {
+    item: {
+      id: string
+      title: string
+      chatmessages: Chatmessage[]
+      imageUrl: string
+    }
+  }
+
+  const renderItem = ({ item }: IChatroomItem) => (
     <TouchableOpacity style={styles.chatroomContainer} onPress={() => navigation.navigate(item.title, { title: item.title, chatmessages: item.chatmessages })}>
       <View style={styles.textImage}>
         <Image
           style={styles.image}
           source={{
-            uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
+            uri:
+              'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
           }}
         />
-
-        <Text style={typography.h1}>{item.title}</Text>
+        <View>
+          <Text style={typography.h2}>{item.title}</Text>
+          <Text>{item.chatmessages.length ? item.chatmessages.slice(-1)[0] : null}</Text>
+        </View>
       </View>
       <TouchableOpacity style={styles.deleteButton}>
         <Text style={styles.deleteButtonText} onPress={() => dispatch(deleteChatroom(item.id))}>
@@ -45,8 +57,6 @@ export default function ChatroomScreen ({ navigation }: any) {
   const handleAddChatroom = () => {
     setErrormessage('')
     setIsTitleUnique(true)
-
-    console.log(text.length, isNameValid, lastCreatedChatroom, 'is name valid')
 
     // check if chatroom already exits
     chatrooms.forEach((chatroom: Chatroom) => {
@@ -82,38 +92,38 @@ export default function ChatroomScreen ({ navigation }: any) {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: variables.colors.gray
+    backgroundColor: variables.colors.gray,
   },
   chatroomTitle: {
     margin: 5,
-    marginLeft: 15
+    marginLeft: 15,
   },
   chatroomContainer: {
     padding: 10,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   deleteButton: {
-    backgroundColor: 'red', // @TODO breyta i variable rauðann
+    backgroundColor: variables.colors.red,
     margin: 10,
     padding: 10,
     borderRadius: 5,
     paddingTop: 8,
-    textAlignVertical: 'center'
+    textAlignVertical: 'center',
   },
   deleteButtonText: {
     color: variables.colors.white,
-    fontFamily: variables.fonts.openSans.semibold
+    fontFamily: variables.fonts.openSans.semibold,
   },
   image: {
     height: 50,
     width: 50,
     borderRadius: 50,
-    marginRight: 20
+    marginRight: 20,
   },
   textImage: {
     flex: 1,
-    flexDirection: 'row'
-  }
+    flexDirection: 'row',
+  },
 })
