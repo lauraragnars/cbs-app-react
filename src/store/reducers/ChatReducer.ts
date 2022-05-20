@@ -1,16 +1,16 @@
-import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS } from '../actions/ChatActions'
+import { SUBTRACT, TOGGLE_HAPPY, ADD, ADD_CHATROOM, DELETE_CHATROOM, FETCH_CHATROOMS, ADD_CHATMESSAGE } from '../actions/ChatActions'
 import { Chatroom } from '../../entities/Chatroom'
 
 const initialState = {
   chatrooms: [],
   counter: 0,
   isHappy: false,
-  name: 'Laura'
+  name: 'Laura',
 }
 
 export interface IAction {
-  type: string;
-  payload: any;
+  type: string
+  payload: any
 }
 
 const chatReducer = (state = initialState, action: IAction) => {
@@ -29,7 +29,7 @@ const chatReducer = (state = initialState, action: IAction) => {
     case DELETE_CHATROOM:
       return {
         ...state,
-        chatrooms: state.chatrooms.filter((chatroom: Chatroom) => chatroom.id !== action.payload)
+        chatrooms: state.chatrooms.filter((chatroom: Chatroom) => chatroom.id !== action.payload),
       }
     default:
       return state

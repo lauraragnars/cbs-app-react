@@ -32,7 +32,7 @@ export default function ChatroomScreen({ navigation }: any) {
   }
 
   const renderItem = ({ item }: IChatroomItem) => (
-    <TouchableOpacity style={styles.chatroomContainer} onPress={() => navigation.navigate(item.title, { title: item.title, chatmessages: item.chatmessages })}>
+    <TouchableOpacity style={styles.chatroomContainer} onPress={() => navigation.navigate(item.title, { title: item.title, chatmessages: item.chatmessages, id: item.id })}>
       <View style={styles.textImage}>
         <Image
           style={styles.image}
@@ -43,7 +43,7 @@ export default function ChatroomScreen({ navigation }: any) {
         />
         <View>
           <Text style={typography.h2}>{item.title}</Text>
-          <Text>{item.chatmessages.length ? item.chatmessages.slice(-1)[0] : null}</Text>
+          <Text>{item.chatmessages && item.chatmessages.length ? item.chatmessages.slice(-1)[0].text : null}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.deleteButton}>
@@ -67,7 +67,7 @@ export default function ChatroomScreen({ navigation }: any) {
 
     if (isNameValid && isTitleUnique && text !== lastCreatedChatroom) {
       setLastCreatedChatroom(text)
-      dispatch(addChatroom(text))
+      dispatch(addChatroom(text, []))
       setErrormessage('')
       setText('')
     } else if (!isNameValid) {
@@ -80,6 +80,7 @@ export default function ChatroomScreen({ navigation }: any) {
   return (
     <>
       <View style={styles.container}>
+        <Text style={typography.h1}>Add new chatroom</Text>
         <InputField text={text} setText={setText} label='Chatroom name' placeholder='Chatroom name' isValid={isNameValid} setIsValid={setIsNameValid} />
         <Text>{errorMessage}</Text>
         <Button buttonType='primary' title='Add new chatroom' onPress={handleAddChatroom}></Button>
@@ -93,6 +94,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: variables.colors.gray,
+    padding: 10,
   },
   chatroomTitle: {
     margin: 5,
