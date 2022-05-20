@@ -3,13 +3,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import * as SecureStore from 'expo-secure-store'
 
 // Screens
-<<<<<<< HEAD
 import ChatScreen from '../screens/navigation/ChatScreen';
-import DiscoverScreen from '../screens/navigation/DiscoverScreen';
 import SignupScreen from '../screens/authentication/SignupScreen';
 import LoginScreen from '../screens/authentication/LoginScreen';
 import HomeScreen from '../screens/navigation/HomeScreen';
-import { useSelector } from 'react-redux';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import { RootState } from '../../App';
@@ -18,23 +15,11 @@ import { variables } from '../styles/Variables';
 import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
 import DiscoverStack from '../screens/navigation/DiscoverStack';
-=======
-import ChatScreen from '../screens/navigation/ChatScreen'
-import DiscoverScreen from '../screens/navigation/DiscoverScreen'
-import SignupScreen from '../screens/authentication/SignupScreen'
-import LoginScreen from '../screens/authentication/LoginScreen'
-import HomeScreen from '../screens/navigation/HomeScreen'
+
 import { useDispatch, useSelector } from 'react-redux'
-import ProfileScreen from '../screens/ProfileScreen'
-import EditProfileScreen from '../screens/EditProfileScreen'
-import { RootState } from '../../App'
-import Icon, { IconType } from './Icon'
-import { variables } from '../styles/Variables'
-import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen'
-import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen'
+
 import { useEffect } from 'react'
 import { logout, refreshUser, storeUser, storeUserInfo } from '../store/actions/UserActions'
->>>>>>> main
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
