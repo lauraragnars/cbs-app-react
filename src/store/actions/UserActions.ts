@@ -92,7 +92,7 @@ export const requestResetPassword = (email: string) => {
       //There was a problem.
       console.log('reset not ok');
     } else {
-      // await SecureStore.getItemAsync('email', data.email);
+      await SecureStore.getItemAsync('email', data.email);
       console.log('an email was sent to your email');
       dispatch({ type: REQUEST_RESET_PASSWORD, payload: { email: data.email } });
     }

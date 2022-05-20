@@ -81,15 +81,46 @@ function MainNavigation() {
 
 function Authentication() {
   return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <Stack.Screen name='Login' component={LoginScreen} />
-      <Stack.Screen name='Signup' component={SignupScreen} />
-      <Stack.Screen name='ResetPassword' component={ResetPasswordScreen} />
-      <Stack.Screen name='VerifyResetPassword' component={VerifyResetPasswordScreen} />
+    <Stack.Navigator>
+      <Stack.Screen
+        name='Login'
+        component={LoginScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='Signup'
+        component={SignupScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name='ResetPassword'
+        component={ResetPasswordScreen}
+        options={{
+          headerStyle: {
+            backgroundColor: 'white',
+          },
+          headerTintColor: variables.colors.blue200,
+          headerBackTitle: 'BACK',
+          headerBackTitleStyle: {
+            fontFamily: variables.fonts.teko.medium,
+            fontSize: 20,
+          },
+          headerTitleStyle: {
+            color: 'white',
+          },
+        }}
+      />
+      <Stack.Screen
+        name='VerifyResetPassword'
+        component={VerifyResetPasswordScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 }
