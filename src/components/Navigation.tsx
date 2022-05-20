@@ -4,7 +4,6 @@ import * as SecureStore from 'expo-secure-store';
 
 // Screens
 import ChatScreen from '../screens/navigation/ChatScreen';
-z;
 import SignupScreen from '../screens/authentication/SignupScreen';
 import LoginScreen from '../screens/authentication/LoginScreen';
 import HomeScreen from '../screens/navigation/HomeScreen';
