@@ -22,6 +22,7 @@ const SignupScreen = ({ navigation }: any) => {
 
   const dispatch = useDispatch()
 
+  // @TODO cleanup
   // async function load () {
   //   const emailFromSecureStore = await SecureStore.getItemAsync('email')
   //   const tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
