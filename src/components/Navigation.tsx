@@ -1,28 +1,12 @@
-<<<<<<< HEAD
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import * as SecureStore from 'expo-secure-store'
-import { RootState } from '../../App'
-import { variables } from '../styles/Variables'
-import Icon, { IconType } from './Icon'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from 'react'
-import { logout, refreshUser, storeUser, storeUserInfo } from '../store/actions/UserActions'
-
-// Screens
-import ChatScreen from '../screens/navigation/ChatScreen'
-import SignupScreen from '../screens/authentication/SignupScreen'
-import LoginScreen from '../screens/authentication/LoginScreen'
-import HomeScreen from '../screens/navigation/HomeScreen'
-import ProfileScreen from '../screens/ProfileScreen'
-import EditProfileScreen from '../screens/EditProfileScreen'
-import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen'
-import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen'
-import DiscoverStack from '../screens/navigation/DiscoverStack'
-=======
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as SecureStore from 'expo-secure-store';
+import { RootState } from '../../App';
+import { variables } from '../styles/Variables';
+import Icon, { IconType } from './Icon';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { logout, refreshUser, storeUser, storeUserInfo } from '../store/actions/UserActions';
 
 // Screens
 import ChatScreen from '../screens/navigation/ChatScreen';
@@ -31,16 +15,9 @@ import LoginScreen from '../screens/authentication/LoginScreen';
 import HomeScreen from '../screens/navigation/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
-import { RootState } from '../../App';
-import Icon, { IconType } from './Icon';
-import { variables } from '../styles/Variables';
 import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
 import DiscoverStack from '../screens/navigation/DiscoverStack';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { logout, refreshUser, storeUser, storeUserInfo } from '../store/actions/UserActions';
->>>>>>> discover
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -142,14 +119,14 @@ function Authentication() {
         name='Login'
         component={LoginScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
       <Stack.Screen
         name='Signup'
         component={SignupScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
       <Stack.Screen
@@ -157,24 +134,24 @@ function Authentication() {
         component={ResetPasswordScreen}
         options={{
           headerStyle: {
-            backgroundColor: 'white',
+            backgroundColor: 'white'
           },
           headerTintColor: variables.colors.blue200,
           headerBackTitle: 'BACK',
           headerBackTitleStyle: {
             fontFamily: variables.fonts.teko.medium,
-            fontSize: 20,
+            fontSize: 20
           },
           headerTitleStyle: {
-            color: 'white',
-          },
+            color: 'white'
+          }
         }}
       />
       <Stack.Screen
         name='VerifyResetPassword'
         component={VerifyResetPasswordScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
     </Stack.Navigator>
