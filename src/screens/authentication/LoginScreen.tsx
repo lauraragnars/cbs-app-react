@@ -1,22 +1,22 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import { useDispatch } from 'react-redux'
-import { login } from '../../store/actions/UserActions'
-import { forms } from '../../styles/Forms'
-import InputField from '../../components/InputField'
-import { Button } from '../../components/Button'
-import { variables } from '../../styles/Variables'
-import { typography } from '../../styles/Typography'
-import { general } from '../../styles/General'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import Icon, { IconType } from '../../components/Icon'
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/actions/UserActions';
+import { forms } from '../../styles/Forms';
+import InputField from '../../components/InputField';
+import { Button } from '../../components/Button';
+import { variables } from '../../styles/Variables';
+import { typography } from '../../styles/Typography';
+import { general } from '../../styles/General';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon, { IconType } from '../../components/Icon';
 
 const LoginScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [isPasswordValid, setIsPasswordValid] = useState(false)
-  const [isEmailValid, setIsEmailValid] = useState(false)
-  const dispatch = useDispatch()
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const dispatch = useDispatch();
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
@@ -36,28 +36,28 @@ const LoginScreen = ({ navigation }: any) => {
         <Button buttonType='link' title="Don't have an account? Sign up" onPress={() => navigation.navigate('Signup')} />
       </SafeAreaView>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   whiteBackground: {
-    backgroundColor: variables.colors.white,
+    backgroundColor: variables.colors.white
   },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icon: {
     width: 115,
-    height: 115,
+    height: 115
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300,
-  },
-})
+    color: variables.colors.blue300
+  }
+});
 
-export default LoginScreen
+export default LoginScreen;

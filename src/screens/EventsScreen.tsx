@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../App';
 import { Button } from '../components/Button';
@@ -18,7 +18,7 @@ const EventsScreen = ({ navigation }: any) => {
   const renderItem = ({ item }: any) => (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate(item.title, {
+        navigation.navigate(item.id, {
           title: item.title,
           category: item.category,
           location: item.location,
@@ -45,12 +45,10 @@ const EventsScreen = ({ navigation }: any) => {
     <>
       <View style={general.generalContainer}>
         <FlatList data={events} renderItem={renderItem} />
-        <Button title='Add new event' onPress={() => navigation.navigate('AddEvent')}></Button>
+        <Button title='Add new event' onPress={() => navigation.navigate('Add Event')}></Button>
       </View>
     </>
   );
 };
-
-const styles = StyleSheet.create({});
 
 export default EventsScreen;

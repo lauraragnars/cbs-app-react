@@ -2,12 +2,12 @@ import { ADD_EVENT, FETCH_EVENTS } from '../actions/EventActions';
 import { Event } from '../../entities/Event';
 
 const initialState = {
-  events: [],
-}
+  events: []
+};
 
 export interface ActionInterface {
-  type: string
-  payload: any
+  type: string;
+  payload: any;
 }
 
 const eventReducer = (state = initialState, action: ActionInterface) => {
@@ -16,8 +16,6 @@ const eventReducer = (state = initialState, action: ActionInterface) => {
       const event = new Event(
         action.payload.eventName,
         action.payload.eventCategory,
-        // action.payload.eventStart,
-        // action.payload.eventEnd,
         action.payload.eventLocation,
         action.payload.eventPostalCode,
         action.payload.eventCity,
@@ -30,8 +28,8 @@ const eventReducer = (state = initialState, action: ActionInterface) => {
       return { ...state, events: action.payload };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default eventReducer
+export default eventReducer;

@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, ImageBackground, SafeAreaView } from 'react-native';
-import TextField from '../../components/TextField';
 import { general } from '../../styles/General';
 import { typography } from '../../styles/Typography';
 
