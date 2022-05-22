@@ -1,26 +1,25 @@
 export class Event {
-  // title: string;
-  // chatmessages: Chatmessage[];
-  // imageUrl: string;
-  // id?: string;
-
   constructor(
     public title: string,
     public category: string,
-    // public date: Date,
+    // public start: Date,
+    // public end: Date,
     public location: string,
-    public postalCode: number,
+    public postalCode: string,
     public city: string,
     public imageUrl: string,
+    public description: string,
     public id?: string
   ) {
     this.id = id;
     this.title = title;
     this.category = category;
-    // this.date = date;
+    // this.start = start;
+    // this.end = end;
     this.location = location;
     this.postalCode = postalCode;
     this.city = city;
     this.imageUrl = imageUrl;
+    this.description = description;
   }
 }
