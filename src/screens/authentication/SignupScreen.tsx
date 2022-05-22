@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import * as SecureStore from 'expo-secure-store'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import React, { useState } from 'react'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux'
-import { signup, storeUser } from '../../store/actions/UserActions'
+import { signup } from '../../store/actions/UserActions'
 import InputField from '../../components/InputField'
 import { Button } from '../../components/Button'
 import { variables } from '../../styles/Variables'
@@ -79,7 +78,7 @@ const SignupScreen = ({ navigation }: any) => {
             text={repeatPassword}
             setText={setRepeatPassword}
           />
-          <Text style={general.errorMessage}>{errorMessage}</Text>
+          {errorMessage ? <Text style={general.errorMessage}>{errorMessage}</Text> : null}
         </View>
 
         <Button title='Get access' onPress={handleButtonPress} />

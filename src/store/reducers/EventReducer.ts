@@ -1,13 +1,13 @@
-import { ADD_EVENT } from '../actions/EventActions';
-import { Event } from '../../entities/Event';
+import { ADD_EVENT } from '../actions/EventActions'
+import { Event } from '../../entities/Event'
 
 const initialState = {
-  events: []
-};
+  events: [],
+}
 
 export interface ActionInterface {
-  type: string;
-  payload: any;
+  type: string
+  payload: any
 }
 
 const eventReducer = (state = initialState, action: ActionInterface) => {
@@ -22,12 +22,11 @@ const eventReducer = (state = initialState, action: ActionInterface) => {
         action.payload.eventCity,
         '',
         action.payload.id
-      );
-      return { ...state, events: [...state.events, event] };
-
+      )
+      return { ...state, events: [...state.events, event] }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default eventReducer;
+export default eventReducer

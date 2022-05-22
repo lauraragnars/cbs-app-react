@@ -1,7 +1,5 @@
 import React from 'react'
 import { View, Text, Image, StyleSheet } from 'react-native'
-import { general } from '../../styles/General'
-import { typography } from '../../styles/Typography'
 import { Button } from '../../components/Button'
 import { variables } from '../../styles/Variables'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -23,36 +21,36 @@ const VerifyResetPasswordScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   fullWidth: {
-    width: '100%'
+    width: '100%',
   },
   container: {
     backgroundColor: variables.colors.blue200,
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   innerContainer: {
     padding: 15,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   image: {
     width: 250,
     height: 288,
-    marginBottom: 50
+    marginBottom: 50,
   },
   whiteH1: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
     color: variables.colors.white,
     marginTop: 10,
-    marginBottom: 10
+    marginBottom: 10,
   },
   whiteText: {
     color: variables.colors.white,
     fontSize: variables.fontSizes.normal,
     fontFamily: variables.fonts.openSans.regular,
     textAlign: 'center',
-    marginBottom: 40
-  }
+    marginBottom: 40,
+  },
 })
 
 export default VerifyResetPasswordScreen

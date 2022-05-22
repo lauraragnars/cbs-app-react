@@ -8,8 +8,6 @@ import { Button } from '../../components/Button'
 import { useDispatch } from 'react-redux'
 import { requestResetPassword } from '../../store/actions/UserActions'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import Icon, { IconType } from '../../components/Icon'
-import { variables } from '../../styles/Variables'
 
 const ResetPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
@@ -36,14 +34,14 @@ const ResetPasswordScreen = ({ navigation }: any) => {
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
-    <SafeAreaView style={general.generalContainer}>
-      <Text style={typography.h1}>Reset Password</Text>
-      <Text style={typography.text}>If you do not know your current password, you can change it.</Text>
-      <View style={forms.formContainer}>
-        <InputField label='E-mail' textContentType='emailAddress' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
-      </View>
-      <Button title='Reset' onPress={handleButtonPress} />
-    </SafeAreaView>
+      <SafeAreaView style={general.generalContainer}>
+        <Text style={typography.h1}>Reset Password</Text>
+        <Text style={typography.text}>If you do not know your current password, you can change it.</Text>
+        <View style={forms.formContainer}>
+          <InputField label='E-mail' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
+        </View>
+        <Button title='Reset' onPress={handleButtonPress} />
+      </SafeAreaView>
     </ScrollView>
   )
 }

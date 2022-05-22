@@ -1,25 +1,8 @@
-import ChatMessage from '../../components/ChatMessage'
 import { Chatmessage, Chatroom } from '../../entities/Chatroom'
 
-export const TOGGLE_HAPPY = 'TOGGLE_HAPPY'
-export const ADD = 'ADD'
-export const SUBTRACT = 'SUBTRACT'
 export const ADD_CHATROOM = 'ADD_CHATROOM'
 export const DELETE_CHATROOM = 'DELETE_CHATROOM'
 export const FETCH_CHATROOMS = 'FETCH_CHATROOMS'
-export const ADD_CHATMESSAGE = 'ADD_CHATMESSAGE'
-
-export const toggleHappy = () => {
-  return { type: TOGGLE_HAPPY }
-}
-
-export const add = () => {
-  return { type: ADD }
-}
-
-export const subtract = () => {
-  return { type: SUBTRACT }
-}
 
 export const fetchChatrooms = () => {
   return async (dispatch: any, getState: any) => {
@@ -81,16 +64,14 @@ export const addChatmessage = (chatroomId: string, chatMessages: Chatmessage[], 
       },
       body: JSON.stringify({
         chatroomName,
-        chatMessages: chatMessages,
+        chatMessages,
       }),
     })
 
     const data = await response.json()
-    console.log(data)
     if (!response.ok) {
-      // There was a problem..
+      console.log(data, 'add chat message error')
     } else {
-      //dispatch({ type: DELETE_CHATROOM, payload: { id: chatroomId } })
       dispatch(fetchChatrooms())
     }
   }

@@ -115,6 +115,5 @@ const disabledStyles = StyleSheet.create({
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue100,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center',
   },
 })

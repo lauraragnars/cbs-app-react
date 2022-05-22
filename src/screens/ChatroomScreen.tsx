@@ -62,6 +62,7 @@ export default function ChatroomScreen({ navigation }: any) {
     // check if chatroom already exits
     chatrooms.forEach((chatroom: Chatroom) => {
       if (chatroom.title === text) {
+        console.log('SET')
         setIsTitleUnique(false)
       }
     })
@@ -86,7 +87,7 @@ export default function ChatroomScreen({ navigation }: any) {
           <InputField text={text} setText={setText} label='Chatroom name' placeholder='Chatroom name' isValid={isNameValid} setIsValid={setIsNameValid} />
         </View>
         <Text>{errorMessage}</Text>
-        <Button buttonType='primary' title='Add new chatroom' onPress={handleAddChatroom}></Button>
+        <Button buttonType={isNameValid ? 'primary' : 'disabled'} title='Add new chatroom' onPress={handleAddChatroom}></Button>
         <FlatList data={chatrooms} renderItem={renderItem} />
       </View>
     </>

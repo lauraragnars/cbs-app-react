@@ -53,7 +53,7 @@ export default function EditProfileScreen({ navigation }: any) {
             setText={setLastName}
           />
         </View>
-
+        {errorMessage ? <Text>{errorMessage}</Text> : null}
         <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={handleSafeInfo} />
       </View>
     </>
