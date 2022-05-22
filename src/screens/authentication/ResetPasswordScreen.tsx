@@ -5,31 +5,21 @@ import { forms } from '../../styles/Forms'
 import { general } from '../../styles/General'
 import { typography } from '../../styles/Typography'
 import { Button } from '../../components/Button'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { requestResetPassword } from '../../store/actions/UserActions'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { RootState } from '../../../App'
+import ErrorMessage from '../../components/ErrorMessage'
 
 const ResetPasswordScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
   const [isEmailValid, setIsEmailValid] = useState(false)
   const dispatch = useDispatch()
+  const error = useSelector((state: RootState) => state.user.errorMessage)
 
   const handleButtonPress = () => {
-    if (isEmailValid) {
-      console.log('handle button press, email is valid')
-      // Add check if email is in database
-      dispatch(requestResetPassword(email))
-      navigation.navigate('VerifyResetPassword')
-    } else {
-      console.log('reset did not go through')
-      // if (!isEmailValid) {
-      //   setErrorMessage('E-mail is required');
-      // } else if (password !== repeatPassword) {
-      //   setErrorMessage('Passwords do not match');
-      // } else {
-      //   setErrorMessage('');
-      // }
-    }
+    dispatch(requestResetPassword(email))
+    navigation.navigate('VerifyResetPassword')
   }
 
   return (
@@ -40,7 +30,8 @@ const ResetPasswordScreen = ({ navigation }: any) => {
         <View style={forms.formContainer}>
           <InputField label='E-mail' placeholder='Email' isValid={isEmailValid} setIsValid={setIsEmailValid} text={email} setText={setEmail} />
         </View>
-        <Button title='Reset' onPress={handleButtonPress} />
+        <ErrorMessage error={error} />
+        <Button buttonType={isEmailValid ? 'primary' : 'disabled'} title='Reset' onPress={handleButtonPress} />
       </SafeAreaView>
     </ScrollView>
   )

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { signup } from '../../store/actions/UserActions'
 import InputField from '../../components/InputField'
 import { Button } from '../../components/Button'
@@ -10,6 +10,8 @@ import { typography } from '../../styles/Typography'
 import { general } from '../../styles/General'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Icon, { IconType } from '../../components/Icon'
+import { RootState } from '../../../App'
+import ErrorMessage from '../../components/ErrorMessage'
 
 const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
@@ -19,6 +21,7 @@ const SignupScreen = ({ navigation }: any) => {
   const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false)
   const [isEmailValid, setIsEmailValid] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
+  const error = useSelector((state: RootState) => state.user.errorMessage)
 
   const dispatch = useDispatch()
 
@@ -62,6 +65,7 @@ const SignupScreen = ({ navigation }: any) => {
           />
           {errorMessage ? <Text style={general.errorMessage}>{errorMessage}</Text> : null}
         </View>
+        <ErrorMessage error={error} />
 
         <Button title='Get access' onPress={handleButtonPress} />
         <Button buttonType='link' title='Already have an account? Login' onPress={() => navigation.navigate('Login')} />
@@ -81,8 +85,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon: {
-    width: 115,
-    height: 115,
+    width: 90,
+    height: 90,
   },
   header: {
     fontSize: variables.fontSizes.large,

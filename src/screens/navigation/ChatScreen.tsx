@@ -35,9 +35,10 @@ export default function ChatScreen() {
               fontFamily: variables.fonts.teko.medium,
               fontSize: variables.fontSizes.medium,
             },
+            headerTitle: chatroom.title,
           }}
           key={chatroom.id}
-          name={chatroom.title}
+          name={chatroom.id}
           component={SingleChatroomScreen}
         />
       ))}
