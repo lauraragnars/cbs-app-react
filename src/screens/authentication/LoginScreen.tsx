@@ -11,6 +11,7 @@ import { variables } from '../../styles/Variables'
 import { typography } from '../../styles/Typography'
 import { general } from '../../styles/General'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Icon, { IconType } from '../../components/Icon'
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
@@ -23,7 +24,9 @@ const LoginScreen = ({ navigation }: any) => {
     <ScrollView keyboardShouldPersistTaps='handled'>
       <SafeAreaView style={general.generalContainer}>
         <View style={styles.image}>
-          <Image source={require('../../../assets/cbs-logo.png')} />
+          <View style={styles.icon}>
+            <Icon type={IconType.CBS_LOGO} />
+          </View>
         </View>
         <Text style={typography.h1}>Log in</Text>
         <View style={forms.formContainer}>
@@ -40,19 +43,23 @@ const LoginScreen = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
   whiteBackground: {
-    backgroundColor: variables.colors.white
+    backgroundColor: variables.colors.white,
   },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+  },
+  icon: {
+    width: 115,
+    height: 115,
   },
   header: {
     fontSize: variables.fontSizes.large,
     fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300
-  }
+    color: variables.colors.blue300,
+  },
 })
 
 export default LoginScreen

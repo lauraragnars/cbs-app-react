@@ -5,6 +5,7 @@ export const variables = {
     blue200: '#5050A5',
     blue300: '#32305D',
     gray: '#EEEEEE',
+    darkGray: '#b9b9b9',
     red: '#B10024',
     purple: '#700F6E',
     green: '#07936B',

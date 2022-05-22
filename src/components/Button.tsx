@@ -2,9 +2,9 @@ import { StyleSheet, TouchableOpacity, Text, GestureResponderEvent } from 'react
 import { variables } from '../styles/Variables'
 
 interface ButtonProps {
-  onPress: (event: GestureResponderEvent) => void;
-  title: string;
-  buttonType?: 'primary' | 'secondary' | 'link' | 'disabled';
+  onPress: (event: GestureResponderEvent) => void
+  title: string
+  buttonType?: 'primary' | 'secondary' | 'link' | 'disabled'
 }
 
 export const Button = ({ onPress, title, buttonType = 'primary' }: ButtonProps) => {
@@ -42,20 +42,21 @@ const primaryStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5,
+    marginTop: 10,
+    marginBottom: 5,
     shadowColor: variables.colors.gray,
     shadowOpacity: 1,
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5
-    }
+      height: 5,
+    },
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.white,
-    fontFamily: variables.fonts.openSans.bold
-  }
+    fontFamily: variables.fonts.openSans.bold,
+  },
 })
 
 const secondaryStyles = StyleSheet.create({
@@ -64,14 +65,15 @@ const secondaryStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5,
+    marginTop: 10,
+    marginBottom: 5,
     shadowColor: variables.colors.gray,
     shadowOpacity: 1,
     shadowRadius: 10,
     shadowOffset: {
       width: 5,
-      height: 5
-    }
+      height: 5,
+    },
   },
   buttonText: {
     fontSize: variables.fontSizes.large,
@@ -79,8 +81,8 @@ const secondaryStyles = StyleSheet.create({
     fontFamily: variables.fonts.teko.medium,
     textTransform: 'uppercase',
     fontWeight: 'bold',
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 })
 
 const linkStyles = StyleSheet.create({
@@ -89,14 +91,15 @@ const linkStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5
+    marginTop: 10,
+    marginBottom: 5,
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue200,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 })
 
 const disabledStyles = StyleSheet.create({
@@ -105,12 +108,13 @@ const disabledStyles = StyleSheet.create({
     borderRadius: 5,
     paddingVertical: 15,
     paddingHorizontal: 12,
-    margin: 5
+    marginTop: 10,
+    marginBottom: 5,
   },
   buttonText: {
     fontSize: variables.fontSizes.normal,
     color: variables.colors.blue100,
     fontFamily: variables.fonts.openSans.bold,
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 })

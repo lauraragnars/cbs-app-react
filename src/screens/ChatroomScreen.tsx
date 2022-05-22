@@ -8,6 +8,7 @@ import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/Ch
 import { Button } from '../components/Button'
 import { typography } from '../styles/Typography'
 import { variables } from '../styles/Variables'
+import { forms } from '../styles/Forms'
 
 export default function ChatroomScreen({ navigation }: any) {
   const dispatch = useDispatch()
@@ -81,7 +82,9 @@ export default function ChatroomScreen({ navigation }: any) {
     <>
       <View style={styles.container}>
         <Text style={typography.h1}>Add new chatroom</Text>
-        <InputField text={text} setText={setText} label='Chatroom name' placeholder='Chatroom name' isValid={isNameValid} setIsValid={setIsNameValid} />
+        <View style={forms.formContainer}>
+          <InputField text={text} setText={setText} label='Chatroom name' placeholder='Chatroom name' isValid={isNameValid} setIsValid={setIsNameValid} />
+        </View>
         <Text>{errorMessage}</Text>
         <Button buttonType='primary' title='Add new chatroom' onPress={handleAddChatroom}></Button>
         <FlatList data={chatrooms} renderItem={renderItem} />
@@ -93,7 +96,6 @@ export default function ChatroomScreen({ navigation }: any) {
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: variables.colors.gray,
     padding: 10,
   },
   chatroomTitle: {

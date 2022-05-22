@@ -10,6 +10,7 @@ import { forms } from '../../styles/Forms'
 import { typography } from '../../styles/Typography'
 import { general } from '../../styles/General'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import Icon, { IconType } from '../../components/Icon'
 
 const SignupScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('')
@@ -61,7 +62,9 @@ const SignupScreen = ({ navigation }: any) => {
     <ScrollView keyboardShouldPersistTaps='handled'>
       <SafeAreaView style={general.generalContainer}>
         <View style={styles.image}>
-          <Image source={require('../../../assets/cbs-logo.png')} />
+          <View style={styles.icon}>
+            <Icon type={IconType.CBS_LOGO} />
+          </View>
         </View>
         <Text style={typography.h1}>Signup to get access</Text>
         <View style={forms.formContainer}>
@@ -95,6 +98,10 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  icon: {
+    width: 115,
+    height: 115,
   },
   header: {
     fontSize: variables.fontSizes.large,

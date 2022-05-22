@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import { variables } from '../styles/Variables'
 
 interface InputFieldProps {
-  label: string;
-  errorMessage?: string;
-  placeholder: string;
-  isValid: boolean;
-  setIsValid: Function;
-  text?: string;
-  setText: Function;
-  password?: boolean;
-  disabled?: boolean;
+  label: string
+  errorMessage?: string
+  placeholder: string
+  isValid: boolean
+  setIsValid: Function
+  text?: string
+  setText: Function
+  password?: boolean
+  disabled?: boolean
 }
 
-export default function InputField ({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, password = false, disabled = false }: InputFieldProps) {
+export default function InputField({ label, errorMessage, placeholder, isValid, setIsValid, text, setText, password = false, disabled = false }: InputFieldProps) {
   const [entered, setEntered] = useState(false)
 
   useEffect(() => {
@@ -42,7 +42,15 @@ export default function InputField ({ label, errorMessage, placeholder, isValid,
   return (
     <View style={styles.inputField}>
       <Text style={styles.label}>{label}</Text>
-      <TextInput secureTextEntry={password} style={styles.inputText} onBlur={handleOnBlur} onChangeText={handleChangeText} value={text} placeholder={placeholder} />
+      <TextInput
+        secureTextEntry={password}
+        placeholderTextColor={variables.colors.darkGray}
+        style={styles.inputText}
+        onBlur={handleOnBlur}
+        onChangeText={handleChangeText}
+        value={text}
+        placeholder={placeholder}
+      />
       {!isValid && entered && <Text>{errorMessage}</Text>}
     </View>
   )
@@ -53,18 +61,18 @@ const styles = StyleSheet.create({
     fontFamily: variables.fonts.openSans.bold,
     fontSize: variables.fontSizes.xsmall,
     color: variables.colors.blue300,
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
   },
   inputText: {
     fontFamily: variables.fonts.openSans.regular,
     fontSize: variables.fontSizes.normal,
-    color: variables.colors.blue300
+    color: variables.colors.blue300,
   },
   inputField: {
     borderColor: variables.colors.gray,
     padding: 10,
     borderStyle: 'solid',
     width: '100%',
-    borderBottomWidth: 1
-  }
+    borderBottomWidth: 1,
+  },
 })
