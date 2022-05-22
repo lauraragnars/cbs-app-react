@@ -10,12 +10,12 @@ import { Teko_300Light, Teko_400Regular, Teko_500Medium, Teko_600SemiBold, Teko_
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 
 import { variables } from './src/styles/Variables';
-import eventReducer from './src/store/reducers/EventReducer';
+import EventReducer from './src/store/reducers/EventReducer';
 
 const rootReducer = combineReducers({
   chat: chatReducer,
   user: userReducer,
-  event: eventReducer
+  event: EventReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
