@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { View, FlatList, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../App';
-import { Button } from '../components/Button';
-import EventCard from '../components/EventCard';
-import { fetchEvents } from '../store/actions/EventActions';
-import { general } from '../styles/General';
+import { RootState } from '../../../App';
+import { Button } from '../../components/Button';
+import EventCard from '../../components/EventCard';
+import { fetchEvents } from '../../store/actions/EventActions';
+import { general } from '../../styles/General';
 
 const EventsScreen = ({ navigation }: any) => {
   const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../App';
-import EventsScreen from '../EventsScreen';
+import EventsScreen from './EventsScreen';
 import AddNewEventScreen from './AddNewEventScreen';
 import DiscoverScreen from './DiscoverScreen';
 import SingleEventScreen from './SingleEventScreen';

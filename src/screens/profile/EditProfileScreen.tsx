@@ -1,32 +1,32 @@
-import { useState } from 'react'
-import { Text, View } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from '../../App'
-import { Button } from '../components/Button'
-import InputField from '../components/InputField'
-import { addUserInfo } from '../store/actions/UserActions'
-import { general } from '../styles/General'
-import { typography } from '../styles/Typography'
+import { useState } from 'react';
+import { Text, View } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../App';
+import { Button } from '../../components/Button';
+import InputField from '../../components/InputField';
+import { addUserInfo } from '../../store/actions/UserActions';
+import { general } from '../../styles/General';
+import { typography } from '../../styles/Typography';
 
 export default function EditProfileScreen({ navigation }: any) {
-  const dispatch = useDispatch()
-  const user = useSelector((state: RootState) => state.user)
-  const [firstNameValid, setFirstNameValid] = useState(false)
-  const [lastNameValid, setLastNameValid] = useState(false)
-  const [firstName, setFirstName] = useState(user.firstName)
-  const [lastName, setLastName] = useState(user.lastName)
-  const isFormValid = firstNameValid && lastNameValid
-  const [errorMessage, setErrorMessage] = useState('')
+  const dispatch = useDispatch();
+  const user = useSelector((state: RootState) => state.user);
+  const [firstNameValid, setFirstNameValid] = useState(false);
+  const [lastNameValid, setLastNameValid] = useState(false);
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const isFormValid = firstNameValid && lastNameValid;
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSafeInfo = () => {
     try {
-      dispatch(addUserInfo(firstName, lastName, user.email, user.userId))
+      dispatch(addUserInfo(firstName, lastName, user.email, user.userId));
     } catch {
-      setErrorMessage('Somethin went wrong')
+      setErrorMessage('Somethin went wrong');
     } finally {
-      navigation.navigate('Profile')
+      navigation.navigate('Profile');
     }
-  }
+  };
 
   return (
     <>
@@ -57,5 +57,5 @@ export default function EditProfileScreen({ navigation }: any) {
         <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Save changes' onPress={handleSafeInfo} />
       </View>
     </>
-  )
+  );
 }

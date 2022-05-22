@@ -1,14 +1,14 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../../App'
-import { Chatroom } from '../../entities/Chatroom'
-import { variables } from '../../styles/Variables'
-import ChatroomScreen from '../ChatroomScreen'
-import SingleChatroomScreen from '../SingleChatroomScreen'
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../App';
+import { Chatroom } from '../../entities/Chatroom';
+import { variables } from '../../styles/Variables';
+import ChatroomScreen from './ChatroomScreen';
+import SingleChatroomScreen from './SingleChatroomScreen';
 
 export default function ChatScreen() {
-  const Stack = createNativeStackNavigator()
-  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms)
+  const Stack = createNativeStackNavigator();
+  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
 
   return (
     <Stack.Navigator>
@@ -16,26 +16,26 @@ export default function ChatScreen() {
         name='Chatrooms'
         component={ChatroomScreen}
         options={{
-          headerShown: false,
+          headerShown: false
         }}
       />
       {chatrooms.map((chatroom: Chatroom) => (
         <Stack.Screen
           options={{
             headerStyle: {
-              backgroundColor: 'white',
+              backgroundColor: 'white'
             },
             headerTintColor: variables.colors.blue200,
             headerBackTitle: 'BACK',
             headerBackTitleStyle: {
               fontFamily: variables.fonts.teko.medium,
-              fontSize: variables.fontSizes.medium,
+              fontSize: variables.fontSizes.medium
             },
             headerTitleStyle: {
               fontFamily: variables.fonts.teko.medium,
-              fontSize: variables.fontSizes.medium,
+              fontSize: variables.fontSizes.medium
             },
-            headerTitle: chatroom.title,
+            headerTitle: chatroom.title
           }}
           key={chatroom.id}
           name={chatroom.id}
@@ -43,5 +43,5 @@ export default function ChatScreen() {
         />
       ))}
     </Stack.Navigator>
-  )
+  );
 }

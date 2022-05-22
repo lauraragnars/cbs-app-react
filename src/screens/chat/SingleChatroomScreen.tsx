@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FlatList, KeyboardAvoidingView, Platform, StyleSheet, TextInput, View } from 'react-native';
 import { useDispatch } from 'react-redux';
-import ChatMessage from '../components/ChatMessage';
-import { Chatmessage } from '../entities/Chatroom';
-import { addChatmessage } from '../store/actions/ChatActions';
-import { forms } from '../styles/Forms';
-import { variables } from '../styles/Variables';
+import ChatMessage from '../../components/ChatMessage';
+import { Chatmessage } from '../../entities/Chatroom';
+import { addChatmessage } from '../../store/actions/ChatActions';
+import { forms } from '../../styles/Forms';
+import { variables } from '../../styles/Variables';
 
 export default function SingleChatroomScreen({ route }: any) {
   const { title, chatmessages, id } = route.params;

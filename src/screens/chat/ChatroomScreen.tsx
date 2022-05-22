@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from 'react'
-import { Text, FlatList, TouchableOpacity, View, StyleSheet, Image } from 'react-native'
-import { useSelector, useDispatch } from 'react-redux'
-import { RootState } from '../../App'
-import InputField from '../components/InputField'
-import { Chatmessage } from '../entities/Chatroom'
-import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions'
-import { Button } from '../components/Button'
-import { typography } from '../styles/Typography'
-import { variables } from '../styles/Variables'
-import { forms } from '../styles/Forms'
+import React, { useState, useEffect } from 'react';
+import { Text, FlatList, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../App';
+import InputField from '../../components/InputField';
+import { Chatmessage } from '../../entities/Chatroom';
+import { addChatroom, deleteChatroom, fetchChatrooms } from '../../store/actions/ChatActions';
+import { Button } from '../../components/Button';
+import { typography } from '../../styles/Typography';
+import { variables } from '../../styles/Variables';
+import { forms } from '../../styles/Forms';
 
 export default function ChatroomScreen({ navigation }: any) {
-  const dispatch = useDispatch()
-  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms)
-  const [text, setText] = useState('')
-  const [errorMessage, setErrormessage] = useState('')
-  const [isNameValid, setIsNameValid] = useState(false)
+  const dispatch = useDispatch();
+  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
+  const [text, setText] = useState('');
+  const [errorMessage, setErrormessage] = useState('');
+  const [isNameValid, setIsNameValid] = useState(false);
 
   useEffect(() => {
-    dispatch(fetchChatrooms())
-  }, [])
+    dispatch(fetchChatrooms());
+  }, []);
 
   interface IChatroomItem {
     item: {
-      id: string
-      title: string
-      chatmessages: Chatmessage[]
-      imageUrl: string
-    }
+      id: string;
+      title: string;
+      chatmessages: Chatmessage[];
+      imageUrl: string;
+    };
   }
 
   const renderItem = ({ item }: IChatroomItem) => (
@@ -36,8 +36,7 @@ export default function ChatroomScreen({ navigation }: any) {
         <Image
           style={styles.image}
           source={{
-            uri:
-              'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60',
+            uri: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw3NjA4Mjc3NHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60'
           }}
         />
         <View>
@@ -51,19 +50,19 @@ export default function ChatroomScreen({ navigation }: any) {
         </Text>
       </TouchableOpacity>
     </TouchableOpacity>
-  )
+  );
 
   const handleAddChatroom = () => {
-    setErrormessage('')
+    setErrormessage('');
 
     if (isNameValid) {
-      dispatch(addChatroom(text, []))
-      setErrormessage('')
-      setText('')
+      dispatch(addChatroom(text, []));
+      setErrormessage('');
+      setText('');
     } else if (!isNameValid) {
-      setErrormessage('Please provide a chatroom name')
+      setErrormessage('Please provide a chatroom name');
     }
-  }
+  };
 
   return (
     <>
@@ -77,23 +76,23 @@ export default function ChatroomScreen({ navigation }: any) {
         <FlatList data={chatrooms} renderItem={renderItem} />
       </View>
     </>
-  )
+  );
 }
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    padding: 10
   },
   chatroomTitle: {
     margin: 5,
-    marginLeft: 15,
+    marginLeft: 15
   },
   chatroomContainer: {
     padding: 10,
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-between'
   },
   deleteButton: {
     backgroundColor: variables.colors.red,
@@ -101,20 +100,20 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     paddingTop: 8,
-    textAlignVertical: 'center',
+    textAlignVertical: 'center'
   },
   deleteButtonText: {
     color: variables.colors.white,
-    fontFamily: variables.fonts.openSans.semibold,
+    fontFamily: variables.fonts.openSans.semibold
   },
   image: {
     height: 50,
     width: 50,
     borderRadius: 50,
-    marginRight: 20,
+    marginRight: 20
   },
   textImage: {
     flex: 1,
-    flexDirection: 'row',
-  },
-})
+    flexDirection: 'row'
+  }
+});

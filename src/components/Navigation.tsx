@@ -9,15 +9,15 @@ import { useEffect } from 'react';
 import { logout, refreshUser, storeUser, storeUserInfo } from '../store/actions/UserActions';
 
 // Screens
-import ChatScreen from '../screens/navigation/ChatScreen';
+import ChatScreen from '../screens/chat/ChatScreen';
 import SignupScreen from '../screens/authentication/SignupScreen';
 import LoginScreen from '../screens/authentication/LoginScreen';
-import HomeScreen from '../screens/navigation/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import EditProfileScreen from '../screens/EditProfileScreen';
+import HomeScreen from '../screens/home/HomeScreen';
+import ProfileScreen from '../screens/profile/ProfileScreen';
+import EditProfileScreen from '../screens/profile/EditProfileScreen';
 import ResetPasswordScreen from '../screens/authentication/ResetPasswordScreen';
 import VerifyResetPasswordScreen from '../screens/authentication/VerifyResetPasswordScreen';
-import DiscoverStack from '../screens/navigation/DiscoverStack';
+import DiscoverStack from '../screens/discover/DiscoverStack';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
