@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import InputField from '../../components/InputField'
 import { forms } from '../../styles/Forms'
 import { general } from '../../styles/General'
@@ -45,7 +45,5 @@ const ResetPasswordScreen = ({ navigation }: any) => {
     </ScrollView>
   )
 }
-
-const styles = StyleSheet.create({})
 
 export default ResetPasswordScreen

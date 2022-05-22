@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { signup } from '../../store/actions/UserActions'
 import InputField from '../../components/InputField'
