@@ -21,7 +21,7 @@ export default function DiscoverCard({ title, cardType }: DiscoverCardProps) {
     case 'blue':
       return (
         <View style={styles.container}>
-          <ImageBackground source={require('../../assets/allpostspic.png')} style={styles.image} imageStyle={{ borderRadius: 7 }}>
+          <ImageBackground source={require('../../assets/studentorganisationspic.png')} style={styles.image} imageStyle={{ borderRadius: 7 }}>
             <View style={[styles.blueCard, styles.overlay]} />
             <Text style={styles.cardTitle}>{title}</Text>
           </ImageBackground>
@@ -30,7 +30,7 @@ export default function DiscoverCard({ title, cardType }: DiscoverCardProps) {
     case 'green':
       return (
         <View style={styles.container}>
-          <ImageBackground source={require('../../assets/studentorganisationspic.png')} style={styles.image} imageStyle={{ borderRadius: 7 }}>
+          <ImageBackground source={require('../../assets/allpostspic.png')} style={styles.image} imageStyle={{ borderRadius: 7 }}>
             <View style={[styles.greenCard, styles.overlay]} />
             <Text style={styles.cardTitle}>{title}</Text>
           </ImageBackground>

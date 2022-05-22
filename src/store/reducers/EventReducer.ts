@@ -1,5 +1,5 @@
-import { ADD_EVENT } from '../actions/EventActions'
-import { Event } from '../../entities/Event'
+import { ADD_EVENT, FETCH_EVENTS } from '../actions/EventActions';
+import { Event } from '../../entities/Event';
 
 const initialState = {
   events: [],
@@ -16,14 +16,19 @@ const eventReducer = (state = initialState, action: ActionInterface) => {
       const event = new Event(
         action.payload.eventName,
         action.payload.eventCategory,
-        // action.payload.eventDate,
+        // action.payload.eventStart,
+        // action.payload.eventEnd,
         action.payload.eventLocation,
         action.payload.eventPostalCode,
         action.payload.eventCity,
-        '',
+        action.payload.eventImage,
+        action.payload.eventDescription,
         action.payload.id
-      )
-      return { ...state, events: [...state.events, event] }
+      );
+      return { ...state, events: [...state.events, event] };
+    case FETCH_EVENTS:
+      return { ...state, events: action.payload };
+
     default:
       return state
   }
