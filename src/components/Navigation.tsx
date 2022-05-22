@@ -35,19 +35,14 @@ export default function Navigation() {
     const refreshTokenFromSecureStore = await SecureStore.getItemAsync('refreshToken');
 
     if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore && refreshTokenFromSecureStore) {
-      console.log('success', emailFromSecureStore);
       dispatch(refreshUser(refreshTokenFromSecureStore));
       dispatch(storeUser(emailFromSecureStore, userIdFromSecureStore));
     } else {
-      console.log('fail');
       dispatch(logout);
     }
 
     if (firstNameFromSecureStore && lastNameFromSecureStore) {
-      console.log('User info found');
       dispatch(storeUserInfo(firstNameFromSecureStore, lastNameFromSecureStore));
-    } else {
-      console.log('No user info found');
     }
   }
 

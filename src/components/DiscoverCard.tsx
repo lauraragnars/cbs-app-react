@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, ImageBackground, GestureResponderEvent, TouchableWithoutFeedback } from 'react-native';
+import { Text, View, StyleSheet, ImageBackground } from 'react-native';
 import { variables } from '../styles/Variables';
 
 interface DiscoverCardProps {

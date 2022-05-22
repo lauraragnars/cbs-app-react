@@ -5,7 +5,6 @@ import { login } from '../../store/actions/UserActions';
 import { forms } from '../../styles/Forms';
 import InputField from '../../components/InputField';
 import { Button } from '../../components/Button';
-import { variables } from '../../styles/Variables';
 import { typography } from '../../styles/Typography';
 import { general } from '../../styles/General';
 import { SafeAreaView } from 'react-native-safe-area-context';

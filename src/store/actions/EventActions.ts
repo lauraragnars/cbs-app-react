@@ -31,10 +31,8 @@ export const addEvent = (
     });
 
     const data = await response.json(); // json to javascript
-    // console.log(data);
     if (!response.ok) {
       // There was a problem..
-      console.log('There was a problem with adding the event');
     } else {
       dispatch({ type: ADD_EVENT, payload: { eventName, eventCategory, eventLocation, eventPostalCode, eventCity, eventImage, id: data.name } });
     }
@@ -54,7 +52,6 @@ export const fetchEvents = () => {
     const data = await response.json(); // json to javascript
     if (!response.ok) {
       // There was a problem..
-      console.log('could not fetch events');
     } else {
       const events = [];
       for (const key in data) {
@@ -70,7 +67,6 @@ export const fetchEvents = () => {
         );
         events.push(event);
       }
-      console.log(events);
       dispatch({ type: FETCH_EVENTS, payload: events });
     }
   };

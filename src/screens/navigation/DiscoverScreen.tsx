@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity } from 'react-native';
 import DiscoverCard from '../../components/DiscoverCard';
 
 const DiscoverScreen = ({ navigation }: any) => {

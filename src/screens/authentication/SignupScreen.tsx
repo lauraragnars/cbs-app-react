@@ -1,46 +1,43 @@
-import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import { useDispatch, useSelector } from 'react-redux'
-import { signup } from '../../store/actions/UserActions'
-import InputField from '../../components/InputField'
-import { Button } from '../../components/Button'
-import { variables } from '../../styles/Variables'
-import { forms } from '../../styles/Forms'
-import { typography } from '../../styles/Typography'
-import { general } from '../../styles/General'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import Icon, { IconType } from '../../components/Icon'
-import { RootState } from '../../../App'
-import ErrorMessage from '../../components/ErrorMessage'
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { signup } from '../../store/actions/UserActions';
+import InputField from '../../components/InputField';
+import { Button } from '../../components/Button';
+import { forms } from '../../styles/Forms';
+import { typography } from '../../styles/Typography';
+import { general } from '../../styles/General';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Icon, { IconType } from '../../components/Icon';
+import { RootState } from '../../../App';
+import ErrorMessage from '../../components/ErrorMessage';
 
 const SignupScreen = ({ navigation }: any) => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
-  const [isPasswordValid, setIsPasswordValid] = useState(false)
-  const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false)
-  const [isEmailValid, setIsEmailValid] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
-  const error = useSelector((state: RootState) => state.user.errorMessage)
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
+  const [isEmailValid, setIsEmailValid] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const error = useSelector((state: RootState) => state.user.errorMessage);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const handleButtonPress = () => {
-    const isFormValid = isEmailValid && isPasswordValid
+    const isFormValid = isEmailValid && isPasswordValid;
     if (isFormValid && password === repeatPassword) {
-      console.log('form is valid')
-      dispatch(signup(email, password))
+      dispatch(signup(email, password));
     } else {
-      console.log('form is not valid')
       if (!isEmailValid) {
-        setErrorMessage('E-mail is required')
+        setErrorMessage('E-mail is required');
       } else if (password !== repeatPassword) {
-        setErrorMessage('Passwords do not match')
+        setErrorMessage('Passwords do not match');
       } else {
-        setErrorMessage('')
+        setErrorMessage('');
       }
     }
-  }
+  };
 
   return (
     <ScrollView keyboardShouldPersistTaps='handled'>
@@ -66,33 +63,24 @@ const SignupScreen = ({ navigation }: any) => {
           {errorMessage ? <Text style={general.errorMessage}>{errorMessage}</Text> : null}
         </View>
         <ErrorMessage error={error} />
-
         <Button title='Get access' onPress={handleButtonPress} />
         <Button buttonType='link' title='Already have an account? Login' onPress={() => navigation.navigate('Login')} />
       </SafeAreaView>
     </ScrollView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
-  tiny: {
-    width: '5%',
-  },
   image: {
     marginTop: 30,
     marginBottom: 30,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   icon: {
     width: 90,
-    height: 90,
-  },
-  header: {
-    fontSize: variables.fontSizes.large,
-    fontFamily: variables.fonts.teko.medium,
-    color: variables.colors.blue300,
-  },
-})
+    height: 90
+  }
+});
 
-export default SignupScreen
+export default SignupScreen;

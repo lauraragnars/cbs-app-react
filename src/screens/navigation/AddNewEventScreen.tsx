@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard, ScrollView } from 'react-native';
+import { View, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useDispatch } from 'react-redux';
 import InputField from '../../components/InputField';
 import { addEvent } from '../../store/actions/EventActions';
