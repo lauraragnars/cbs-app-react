@@ -62,7 +62,6 @@ export default function ChatroomScreen({ navigation }: any) {
     // check if chatroom already exits
     chatrooms.forEach((chatroom: Chatroom) => {
       if (chatroom.title === text) {
-        console.log('SET')
         setIsTitleUnique(false)
       }
     })

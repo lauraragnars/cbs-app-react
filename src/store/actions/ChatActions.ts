@@ -53,8 +53,6 @@ export const addChatroom = (chatroomName: string, chatMessages: Chatmessage[]) =
 }
 
 export const addChatmessage = (chatroomId: string, chatMessages: Chatmessage[], chatroomName: string) => {
-  console.log(chatMessages, 'chat messages')
-
   return async (dispatch: any, getState: any) => {
     const idToken = getState().user.idToken
     const response = await fetch(`https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/chatrooms/${chatroomId}/.json?auth=${idToken}`, {

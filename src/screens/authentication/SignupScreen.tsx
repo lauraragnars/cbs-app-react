@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native'
 import { useDispatch } from 'react-redux'
 import { signup } from '../../store/actions/UserActions'
 import InputField from '../../components/InputField'
@@ -21,24 +21,6 @@ const SignupScreen = ({ navigation }: any) => {
   const [errorMessage, setErrorMessage] = useState('')
 
   const dispatch = useDispatch()
-
-  // @TODO cleanup
-  // async function load () {
-  //   const emailFromSecureStore = await SecureStore.getItemAsync('email')
-  //   const tokenFromSecureStore = await SecureStore.getItemAsync('idToken')
-  //   const userIdFromSecureStore = await SecureStore.getItemAsync('userId')
-
-  //   if (emailFromSecureStore && tokenFromSecureStore && userIdFromSecureStore) {
-  //     console.log('success', emailFromSecureStore)
-  //     dispatch(storeUser(emailFromSecureStore, tokenFromSecureStore, userIdFromSecureStore))
-  //   } else {
-  //     console.log('fail')
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   load()
-  // }, [])
 
   const handleButtonPress = () => {
     const isFormValid = isEmailValid && isPasswordValid
