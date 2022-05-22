@@ -8,6 +8,7 @@ export const REFRESH_USER = 'REFRESH_USER'
 export const LOGOUT = 'LOGOUT'
 export const REQUEST_RESET_PASSWORD = 'REQUEST_RESET_PASSWORD'
 export const ADD_USER_INFO = 'ADD_USER_INFO'
+export const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE'
 
 export const login = (email: string, password: string) => {
   return async (dispatch: Function) => {
@@ -26,7 +27,9 @@ export const login = (email: string, password: string) => {
     const data = await response.json() // json to javascript
 
     if (!response.ok) {
-      console.log(data)
+      console.log(data.error.message)
+
+      dispatch({ type: SET_ERROR_MESSAGE, payload: { errorMessage: data.error.message } })
     } else {
       const userInfoResponse = await fetch(`https://cbs-app-40f0b-default-rtdb.europe-west1.firebasedatabase.app/user-info/${data.localId}.json?auth=${data.idToken}`, {
         method: 'GET',
@@ -38,7 +41,7 @@ export const login = (email: string, password: string) => {
 
       const userInfoData = await userInfoResponse.json()
       if (!userInfoResponse.ok) {
-        console.log('unable to fetch user data')
+        dispatch({ type: SET_ERROR_MESSAGE, payload: { errorMessage: data.error.message } })
       } else {
         await SecureStore.setItemAsync('firstName', userInfoData.firstName)
         await SecureStore.setItemAsync('lastName', userInfoData.lastName)
@@ -80,7 +83,7 @@ export const signup = (email: string, password: string) => {
 
     const data = await response.json() // json to javascript
     if (!response.ok) {
-      console.log(data, 'signup')
+      dispatch({ type: SET_ERROR_MESSAGE, payload: { errorMessage: data.error.message } })
     } else {
       await SecureStore.setItemAsync('email', data.email)
       await SecureStore.setItemAsync('idToken', data.idToken)
@@ -155,7 +158,7 @@ export const requestResetPassword = (email: string) => {
     })
     const data = await response.json() // json to javascript
     if (!response.ok) {
-      console.log(data, 'reset password')
+      dispatch({ type: SET_ERROR_MESSAGE, payload: { errorMessage: data.error.message } })
     } else {
       await SecureStore.getItemAsync('email', data.email)
       console.log('an email was sent to your email')
@@ -183,9 +186,7 @@ export const addUserInfo = (firstName: string, lastName: string, email: string, 
     const data = await response.json() // json to javascript
 
     if (!response.ok) {
-      console.log(data, 'add user info')
-      const errorMessage = data.message
-      return errorMessage
+      dispatch({ type: SET_ERROR_MESSAGE, payload: { errorMessage: data.error.message } })
     } else {
       await SecureStore.setItemAsync('firstName', firstName)
       await SecureStore.setItemAsync('lastName', lastName)

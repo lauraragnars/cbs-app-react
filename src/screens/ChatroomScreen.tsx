@@ -3,7 +3,7 @@ import { Text, FlatList, TouchableOpacity, View, StyleSheet, Image } from 'react
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../App'
 import InputField from '../components/InputField'
-import { Chatmessage, Chatroom } from '../entities/Chatroom'
+import { Chatmessage } from '../entities/Chatroom'
 import { addChatroom, deleteChatroom, fetchChatrooms } from '../store/actions/ChatActions'
 import { Button } from '../components/Button'
 import { typography } from '../styles/Typography'
@@ -16,8 +16,6 @@ export default function ChatroomScreen({ navigation }: any) {
   const [text, setText] = useState('')
   const [errorMessage, setErrormessage] = useState('')
   const [isNameValid, setIsNameValid] = useState(false)
-  const [isTitleUnique, setIsTitleUnique] = useState(false)
-  const [lastCreatedChatroom, setLastCreatedChatroom] = useState('')
 
   useEffect(() => {
     dispatch(fetchChatrooms())
@@ -33,7 +31,7 @@ export default function ChatroomScreen({ navigation }: any) {
   }
 
   const renderItem = ({ item }: IChatroomItem) => (
-    <TouchableOpacity style={styles.chatroomContainer} onPress={() => navigation.navigate(item.title, { title: item.title, chatmessages: item.chatmessages, id: item.id })}>
+    <TouchableOpacity style={styles.chatroomContainer} onPress={() => navigation.navigate(item.id, { title: item.title, chatmessages: item.chatmessages, id: item.id })}>
       <View style={styles.textImage}>
         <Image
           style={styles.image}
@@ -57,24 +55,13 @@ export default function ChatroomScreen({ navigation }: any) {
 
   const handleAddChatroom = () => {
     setErrormessage('')
-    setIsTitleUnique(true)
 
-    // check if chatroom already exits
-    chatrooms.forEach((chatroom: Chatroom) => {
-      if (chatroom.title === text) {
-        setIsTitleUnique(false)
-      }
-    })
-
-    if (isNameValid && isTitleUnique && text !== lastCreatedChatroom) {
-      setLastCreatedChatroom(text)
+    if (isNameValid) {
       dispatch(addChatroom(text, []))
       setErrormessage('')
       setText('')
     } else if (!isNameValid) {
       setErrormessage('Please provide a chatroom name')
-    } else if (!isTitleUnique) {
-      setErrormessage('There is already a chatroom with this name')
     }
   }
 
