@@ -54,6 +54,8 @@ export default function Navigation() {
 }
 
 function MainNavigation() {
+  const chatrooms = useSelector((state: RootState) => state.chat.chatrooms);
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -92,7 +94,7 @@ function MainNavigation() {
         name='Chat'
         component={ChatScreen}
         options={{
-          tabBarBadge: 3,
+          tabBarBadge: chatrooms.length ? chatrooms.length : 0,
           tabBarIcon: () => <Icon fill={variables.colors.blue200} type={IconType.CHAT} />
         }}
       />
