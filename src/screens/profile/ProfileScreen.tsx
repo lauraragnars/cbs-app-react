@@ -23,7 +23,7 @@ export default function ProfileScreen({ navigation }: any) {
         />
         <View>
           <Text style={[typography.h1, styles.bigText]}>
-            {user.firstName} {user.lastName}
+            {user.firstName.length ? user.firstName : "New user"} {user.lastName}
           </Text>
           <Text>{user.email}</Text>
         </View>
