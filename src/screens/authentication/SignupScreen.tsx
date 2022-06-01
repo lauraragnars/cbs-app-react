@@ -20,6 +20,7 @@ const SignupScreen = ({ navigation }: any) => {
   const [isRepeatPasswordValid, setIsRepeatPasswordValid] = useState(false);
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const isFormValid = isPasswordValid && isRepeatPasswordValid && isEmailValid;
   const error = useSelector((state: RootState) => state.user.errorMessage);
 
   const dispatch = useDispatch();
@@ -63,7 +64,7 @@ const SignupScreen = ({ navigation }: any) => {
           {errorMessage ? <Text style={general.errorMessage}>{errorMessage}</Text> : null}
         </View>
         <ErrorMessage error={error} />
-        <Button title='Get access' onPress={handleButtonPress} />
+        <Button buttonType={isFormValid ? 'primary' : 'disabled'} title='Get access' onPress={handleButtonPress} />
         <Button buttonType='link' title='Already have an account? Login' onPress={() => navigation.navigate('Login')} />
       </SafeAreaView>
     </ScrollView>
